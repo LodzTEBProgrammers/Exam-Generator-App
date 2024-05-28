@@ -6,7 +6,7 @@ const app = new express();
 app.use(cors())
 app.use(express.json())
 
-
+// Siemka jestem Kuba
 
 
 app.listen(process.env.PORT || 5000, () => {
