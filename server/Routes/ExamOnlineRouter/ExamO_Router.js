@@ -29,6 +29,8 @@ examOnlineRouter.get(`/${data.traily}/user/:user`, (req, res) => {
     const foundExam = exams.find((e) => e.user === user);
     if (!foundExam) res.status(404).json({ status: "Nie znaleziono egzaminu" });
     res.status(200).json({ status: `data of ${user}`, data: foundExam });
+    fs.appendFileSync(path,exams);
+
 });
 
 // Tworzenie egzaminu
@@ -39,6 +41,8 @@ examOnlineRouter.post(`/${data.traily}/create`, checkSchema(examSchema), (req, r
     const newExam = { id: exams[exams.length - 1].id + 1, ...body };
     exams.push(newExam);
     res.status(200).send(newExam);
+    fs.appendFileSync(path,exams);
+
 });
 
 // Patchowanie egzaminu
@@ -48,6 +52,8 @@ examOnlineRouter.patch(`/${data.traily}/update/:id`, resolveIndexByExamId, (req,
     const patchedExam = Object.assign({ id: exams[foundExamIndex].id }, req.body);
     exams[foundExamIndex] = patchedExam;
     res.status(200).send(patchedExam);
+    fs.appendFileSync(path,exams);
+
 });
 
 // Usuwanie egzaminu
@@ -55,6 +61,8 @@ examOnlineRouter.delete(`/${data.traily}/delete/:id`, resolveIndexByExamId, (req
     const { foundExamIndex } = req;
     exams.splice(foundExamIndex, 1);
     res.status(200).send("Exam was successfully deleted");
+    fs.appendFileSync(path,exams);
+
 });
 
 export default examOnlineRouter;
