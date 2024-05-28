@@ -1,4 +1,4 @@
-export const examsFile = [
+const examsFile = [
     {
         "id": 1,
         "name": "Maths",
@@ -13,8 +13,7 @@ export const examsFile = [
             "a": "Washington",
             "b": "Warsaw",
             "c": "New York",
-            "trueAnswer":1
-
+            "trueAnswer": 1
         },
         {
             "id": 2,
@@ -22,7 +21,7 @@ export const examsFile = [
             "a": "Washington",
             "b": "Warsaw",
             "c": "New York",
-            "trueAnswer":3
+            "trueAnswer": 3
         }
         ]
     },
@@ -40,8 +39,7 @@ export const examsFile = [
             "a": "Washington",
             "b": "Warsaw",
             "c": "New York",
-            "trueAnswer":1
-
+            "trueAnswer": 1
         },
         {
             "id": 2,
@@ -49,8 +47,10 @@ export const examsFile = [
             "a": "Washington",
             "b": "Warsaw",
             "c": "New York",
-            "trueAnswer":3
+            "trueAnswer": 3
         }
         ]
     }
-]
+];
+
+export default examsFile;
