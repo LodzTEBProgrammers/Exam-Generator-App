@@ -12,5 +12,5 @@ app.use(examOnlineRouter);
 
 
 app.listen(process.env.PORT || 5000, () => {
-    console.log("connected");
+    console.log("listening on port 5000");
 });

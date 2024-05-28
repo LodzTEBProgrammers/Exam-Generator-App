@@ -1,3 +1,3 @@
 export default {
-     traily: "dashboard/examsOnline"
+     traily: "dashboard/exams/online"
 }
