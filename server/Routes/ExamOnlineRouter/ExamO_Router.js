@@ -25,12 +25,21 @@ examOnlineRouter.get(`/${data.traily}/exam/:id`,(req, res)=>{
 
 });
 // Wyświetlanie egzaminu po użytkowniku
-examOnlineRouter.get(`/${data.traily}/getExamByUser/:user`,(req, res)=>{
-    
+examOnlineRouter.get(`/${data.traily}/getExamByUser`,(req, res)=>{
+    const {user} = req.body;
+    const foundExam = exams.find(e=>e.user === user);
+
+    if(!foundExam){
+      res.status(404).json({status:"Nie znaleziono egzmainu"})
+    }
+    res.status(200).json({data: foundExam});
+
 });
 // Tworzenie egzaminu
 examOnlineRouter.post(`/${data.traily}/create`, (req, res) => {
-
+const id = exams.length + 1;
+let newExam = Object.assign(id,req.body);
+exams.push(newExam);
 });
 
 // EXAM -> question1:hover question2:hover
