@@ -10,9 +10,6 @@ export const examSchema = {
         }
     },
     date: {
-        isDate: {
-            errorMessage: "date must be provided in a right format"
-        },
         notEmpty: {
             errorMessage: "date cannot be empty"
         },
@@ -21,9 +18,6 @@ export const examSchema = {
         }
     },
     dateFrom: {
-        isDate: {
-            errorMessage: "date must be provided in a right format"
-        },
         notEmpty: {
             errorMessage: "dateFrom cannot be empty"
         },
@@ -32,9 +26,6 @@ export const examSchema = {
         }
     },
     dateTo: {
-        isDate: {
-            errorMessage: "date must be provided in a right format"
-        },
         notEmpty: {
             errorMessage: "dateTo cannot be empty"
         },

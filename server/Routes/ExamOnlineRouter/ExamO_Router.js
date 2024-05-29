@@ -4,6 +4,7 @@ import express from 'express';
 import { checkSchema, validationResult } from 'express-validator';
 import { examSchema } from '../../schemas/checkExamQuery.js';
 import { resolveIndexByExamId } from '../../utils/middlewares.js';
+import Core from '../../core/Core.js';
 
 const examOnlineRouter = express.Router();
 let path = './data/examModelOnline.json';
@@ -13,6 +14,32 @@ let exams = JSON.parse(fs.readFileSync(path));
 // Wyświetlanie egzaminów
 examOnlineRouter.get(`/${data.traily}`, (req, res) => {
     res.status(200).json({ data: exams });
+});
+
+examOnlineRouter.get(`/${data.traily}/data/:type`, (req, res) => {
+  const { type } = req.params;
+  const file = Core.readJson(type);
+  if (file) {
+    return res.status(200).send(file)
+  } else {
+    return res.status(404).send({ status: "file was not found" })
+  }
+})
+
+examOnlineRouter.post(`/${data.traily}/create/:type`, checkSchema(examSchema), async (req, res) => {
+  const { body } = req;
+  const { type } = req.params;
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) return res.status(400).send(errors.array());
+  const newExam = { id: exams[exams.length - 1].id + 1, ...body };
+  try {
+    await Core.readAndSaveJson(type);
+    exams.push(newExam);
+    res.status(200).send(newExam);
+  } catch (err) {
+    res.status(500).send({ status: "Error reading and saving JSON file" })
+  }
+
 });
 
 // Wyświetlanie egzaminu po id

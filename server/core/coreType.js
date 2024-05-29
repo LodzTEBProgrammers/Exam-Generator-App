@@ -1,6 +1,6 @@
 
 export const ActionsTypes = {
-    ExamPaper:0,
-    ExamOnline:1,
-    User:2,
+    ExamPaper: 'ExamPaper',
+    ExamOnline: 'ExamOnline',
+    User: 'User'
 }

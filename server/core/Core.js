@@ -1,6 +1,7 @@
-import { Paths } from "./Paths";
+import { Paths } from "./Paths.js";
 import fs, { readFile } from "fs";
-import { ActionsTypes } from "./coreType";
+import { ActionsTypes } from "./coreType.js";
+import path, { parse } from "path";
 
 
 
@@ -10,30 +11,12 @@ Co ma znajdować się w Core aplikacji:
 - Stworzyć metode odczytującą dane z jsona i przypisującą do zmiennej
 - Stworzyć metode zapisującą dane do jsona, gdzie typ byłby automatycznie wykrywany
 */
-
 const paths = new Paths();
 export default class Core extends Paths {
-    action = function action(type) {
-        let path = '';
-        switch (type) {
-            case ActionsTypes.ExamPaper:
-                path = '../data/examModel_Paper.json';
-                break;
-            case ActionsTypes.ExamOnline:
-                path = '../data/examModel_Online.json';
-                break;
-            case ActionsTypes.User:
-                path = '../data/someUserPath.json';
-                break;
-            default:
-                throw new Error("invalid type");
-        }
-        return path;
-    }
-
-    readJson = function readJson(type) {
+    
+    static readJson = function readJson(type) {
         try {
-            const path = action(type);
+            const path = paths.getPathExams(type);
             const file = fs.readFileSync(path, 'utf-8');
             return JSON.parse(file); // returns parsed file
         } catch(err) {
@@ -42,14 +25,16 @@ export default class Core extends Paths {
         }
     }
 
-    readAndSaveJson = function readAndSaveJson(type) {
-        const path = action(type);
-        const file = readFile(type);
-        if (file) {
-            return fs.appendFileSync(path, file);
-        } else {
-            console.log("File does not exist")
-            return null;
+    static readAndSaveJson = async function readAndSaveJson(type) {
+        try {
+            const path = paths.getPathExams(type);
+            const content = await fs.promises.readFile(path, 'utf-8')
+            const parsedFile = JSON.parse(content);
+            // await fs.promises.writeFile(filePath, JSON.stringify(parsedFile, null, 2), 'utf-8');
+            // return parsedFile;
+            return fs.appendFileSync(path, parsedFile);
+        } catch (err) {
+            console.log(err);
         }
     }
 }
