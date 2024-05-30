@@ -3,5 +3,58 @@
 @tailwind utilities;
 
 :root {
-  
+  /* Dark Mode */
+  --Text-DarkMode: #ffffff;
+  --TextSecond-DarkMode: #d1d5db;
+  --TextThird-DarkMode: #262626;
+  --TextFourth-DarkMode: #6e6e6e;
+  --Background-DarkMode: #0d0d0d;
+  --BackgroundSecond-DarkMode: #f1f5f9;
+  --BackgroundThird-DarkMode: #171717;
+  --Primary-DarkMode: #355ad4;
+  --Secondary-DarkMode: #104f89;
+  --Accent-DarkMode: #0fb39d;
+  /* Light Mode */
+  --Text-LightMode: #0b0b0e;
+  --Background-LightMode: #f2f2f2;
+  --Secondary-LightMode: #76b5ef;
+  --Primary-LightMode: #2b50ca;
+  --Accent-LightMode: #4cf0db;
+  /* Spacing */
+  --s-1: 8px;
+  --s-2: 16px;
+  --s-3: 24px;
+  --s-4: 32px;
+  --s-5: 48px;
+  /* Headlines */
+  --h-1: 48px;
+  --h-2: 36px;
+  --h-3: 30px;
+  --h-4: 24px;
+  --h-5: 18px;
+  --h-6: 12px;
+  /* Paragraphs */
+  --p: 14px;
+  --p-2: 16px;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body{
+  background: var(--Primary-DarkMode);
+  background: linear-gradient(90deg, var(--Primary-DarkMode) 13%, var(--Accent-DarkMode) 120%);
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
