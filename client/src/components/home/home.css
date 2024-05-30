@@ -27,3 +27,16 @@
         font-size: var(--p-2);
     }
 }
+.hero .custom-card-h {
+    color: var(--Primary-DarkMode);
+    font-size: var(--p-5);
+    margin-bottom: 0;
+}
+.hero .custom-card-p {
+    color: var(--TextThird-DarkMode);
+    font-size: var(--p-1);
+    margin-bottom: 0;
+}
+.hero .custom-flash-svg {
+    color: var(--Primary-DarkMode);
+}
