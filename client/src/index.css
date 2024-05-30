@@ -21,11 +21,11 @@
   --Primary-LightMode: #2b50ca;
   --Accent-LightMode: #4cf0db;
   /* Spacing */
-  --s-1: 8px;
-  --s-2: 16px;
-  --s-3: 24px;
-  --s-4: 32px;
   --s-5: 48px;
+  --s-4: 32px;
+  --s-3: 24px;
+  --s-2: 16px;
+  --s-1: 8px;
   /* Headlines */
   --h-1: 48px;
   --h-2: 36px;
@@ -34,13 +34,16 @@
   --h-5: 18px;
   --h-6: 12px;
   /* Paragraphs */
-  --p: 14px;
+  --p-4: 22px;
+  --p-3: 18px;
   --p-2: 16px;
+  --p-1: 14px;
 }
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Roboto";
 }
 body{
   background: var(--Primary-DarkMode);

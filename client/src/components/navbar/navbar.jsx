@@ -8,7 +8,7 @@ function Navbar() {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
     return (
-        <header className="header flex flex-wrap sm:justify-start sm:flex-nowrap z-50 lg:w-8/12 rounded-lg mx-auto mt-0 lg:mt-5 py-5">
+        <header className="header flex flex-wrap sm:justify-start sm:flex-nowrap z-50 lg:w-8/12 rounded-lg mx-auto mt-0 lg:mt-5 py-5 border border-white/20">
             <nav className="relative w-full lg:w-12/12 px-4 lg:flex lg:items-center lg:justify-between">
                 <div className="flex items-center justify-between">
                     <a href="" className="leading-none">
