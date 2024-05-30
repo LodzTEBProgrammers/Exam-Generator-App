@@ -16,23 +16,31 @@ export default class Core extends Paths {
     
     static readJson = function readJson(type) {
         try {
-            const path = paths.getPathExams(type);
-            const file = fs.readFileSync(path, 'utf-8');
-            return JSON.parse(file); // returns parsed file
+            const filePath = paths.getPathExams(type);
+            const file = fs.readFileSync(filePath, 'utf-8'); // Dodaj kodowanie 'utf-8'
+            console.log("File before parse: " + file)
+            const parsedFile = JSON.parse(file);
+            console.log("File parsed:", parsedFile); // Debugowanie zawartości pliku
+            return JSON.parse(file); // Zwraca sparsowany plik
         } catch(err) {
-            console.log(err);
+            console.log("Error reading JSON:", err);
             return null;
         }
     }
 
-    static readAndSaveJson = async function readAndSaveJson(type) {
+    static readAndSaveJson = function readAndSaveJson(type, newExam) {
         try {
-            const path = paths.getPathExams(type);
-            const content = await fs.promises.readFile(path, 'utf-8')
-            const parsedFile = JSON.parse(content);
-            // await fs.promises.writeFile(filePath, JSON.stringify(parsedFile, null, 2), 'utf-8');
+            const file = Core.readJson(type);
+            // const path = paths.getPathExams(type);
+            // const content = fs.readFile(path, 'utf-8')
+            console.log("File before parse: " + content)
+            // const parsedFile = JSON.parse(file)
+            file.push(newExam);
+            // const parsedFile = JSON.parse(file);
+            console.log("File parsed: " + content)
             // return parsedFile;
-            return fs.appendFileSync(path, parsedFile);
+            fs.writeFileSync(path, JSON.stringify(file));
+            return file;
         } catch (err) {
             console.log(err);
         }
