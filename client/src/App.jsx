@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <main className="layout lg:w-8/12 mx-auto">
+      <main className="layout">
         <Home />
       </main>
       <Footer />

@@ -12,7 +12,7 @@ function Navbar() {
             <nav className="relative w-full lg:w-12/12 px-4 lg:flex lg:items-center lg:justify-between">
                 <div className="flex items-center justify-between">
                     <a href="" className="leading-none">
-                        <img src={Traily} alt="Logo Traily" />
+                        <img src={Traily} alt="Logo Traily" width={"100px"} height={"45px"} />
                     </a>
                     <div className="lg:hidden">
                         <label className="hamburger">
