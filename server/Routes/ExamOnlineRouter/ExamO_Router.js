@@ -9,6 +9,8 @@ import { Paths } from '../../core/Paths.js';
 
 const examOnlineRouter = express.Router();
 const paths = new Paths();
+const path = paths.getPathExams("ExamOnline");
+const constantType = "ExamOnline";
 // main route traily: "/dashboard/exams/online"
 // Wyświetlanie egzaminów
 examOnlineRouter.get(`/${data.traily}`, (req, res) => {
@@ -26,7 +28,6 @@ examOnlineRouter.get(`/${data.traily}/data/:type`, (req, res) => {
 })
 
 examOnlineRouter.post(`/${data.traily}/create/:type`, checkSchema(examSchema), async (req, res) => {
-  // let exams = Core.readJson(type);
   const { body } = req;
   const { type } = req.params;
   const errors = validationResult(req);
@@ -39,12 +40,12 @@ examOnlineRouter.post(`/${data.traily}/create/:type`, checkSchema(examSchema), a
   } catch (err) {
     res.status(500).send({ status: "Error reading and saving JSON file" })
   }
-
 });
 
 // Wyświetlanie egzaminu po id
 examOnlineRouter.get(`/${data.traily}/:id`, (req, res) => {
     const { id } = req.params;
+    let exams = JSON.parse(fs.readFileSync(path));
     const foundExam = exams.find((e) => e.id === parseInt(id));
     if (!foundExam) res.status(404).json({ status: "Nie znaleziono egzaminu" });
     res.status(200).json({ data: foundExam });
@@ -53,6 +54,7 @@ examOnlineRouter.get(`/${data.traily}/:id`, (req, res) => {
 // Wyświetlanie egzaminu po użytkowniku
 examOnlineRouter.get(`/${data.traily}/user/:user`, (req, res) => {
     const { user } = req.params;
+    let exams = JSON.parse(fs.readFileSync(path));
     const foundExam = exams.find((e) => e.user === user);
     if (!foundExam) res.status(404).json({ status: "Nie znaleziono egzaminu" });
     res.status(200).json({ status: `data of ${user}`, data: foundExam });
@@ -73,14 +75,13 @@ examOnlineRouter.post(`/${data.traily}/create`, checkSchema(examSchema), (req, r
 });
 
 // Patchowanie egzaminu
-examOnlineRouter.patch(`/${data.traily}/update/:id`, resolveIndexByExamId, (req, res) => {
-    const { foundExamIndex } = req;
-    const { name, date } = req.body;
-    const patchedExam = Object.assign({ id: exams[foundExamIndex].id }, req.body);
+examOnlineRouter.patch(`/${data.traily}/update/:id`, patchExamById, (req, res) => {
+    const { foundExamIndex, patchedExam } = req;
+    const { id } = req.params;
+    let exams = JSON.parse(fs.readFileSync(path));
     exams[foundExamIndex] = patchedExam;
-    res.status(200).send(patchedExam);
-    fs.appendFileSync(path,exams);
-
+    Core.readAndSaveJson(constantType, exams);
+    return res.status(200).send(patchedExam);
 });
 
 // Usuwanie egzaminu
@@ -89,7 +90,7 @@ examOnlineRouter.delete(`/${data.traily}/delete/:id`, resolveIndexByExamId, (req
     exams.splice(foundExamIndex, 1);
     res.status(200).send("Exam was successfully deleted");
     fs.appendFileSync(path,exams);
-
 });
+
 
 export default examOnlineRouter;

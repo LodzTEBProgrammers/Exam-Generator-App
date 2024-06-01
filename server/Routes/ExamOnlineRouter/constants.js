@@ -1,3 +1,5 @@
 export default {
-     traily: "dashboard/exams/online"
+     traily: "dashboard/exams/online",
+     examOnline: "ExamOnline",
+     examPaper: "ExamPaper"
 }
