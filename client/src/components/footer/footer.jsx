@@ -25,7 +25,7 @@ function Footer() {
                         </a>
                     </div>
                 </div>
-                <hr className="my-5 border-white/50" />
+                <hr className="my-5 border-white/25" />
                 <div className="sm:flex sm:items-center sm:justify-between">
                     <div className="flex mt-4 mb-4 sm:justify-center sm:mt-0 sm:mb-0">
                         <a href="#" className="text-md text-white">
