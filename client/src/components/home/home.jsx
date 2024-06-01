@@ -133,25 +133,25 @@ const Home = () => {
       <section className="contact flex h-full w-full pb-24 lg:pb-56">
         <div className='container lg:w-6/12 mt-16 justify-center mx-auto'>
           <h2>Contact</h2>
-          <div className='contact-box px-5 mt-16 flex flex-col justify-center mx-auto w-full'>
+          <div className='contact-box px-5 lg:px-0 mt-16 flex flex-col justify-center mx-auto w-full'>
             <h3>Send us a message if you had any problems</h3>
             <p>We are here to solve your problems related to our tool.</p>
             <div className="border rounded-lg border-white/30 md:w-6/12 lg:w-4/5 xl:w-3/5 mx-auto mt-16">
               <form className='p-4'>
                 <div className='form-group mb-4'>
-                  <label className='mb-1 block font-medium'>Name</label>
-                  <input type="text" className='w-full rounded-lg py-1 px-2 text-base font-medium shadow border border-white/20' placeholder="Jan" />
+                  <label htmlFor="name" className='mb-1 block font-medium'>Name</label>
+                  <input type="text" id="name" className='w-full rounded-lg py-2 px-3 text-base font-medium shadow border border-white/20' placeholder="Jan" required />
                 </div>
                 <div className='form-group mb-4'>
-                  <label className='mb-1 block text-base font-medium'>Email</label>
-                  <input type="email" className='w-full rounded-lg py-1 px-2 text-base font-medium shadow border border-white/20' placeholder="support@traily.pl" />
+                  <label htmlFor="email" className='mb-1 block text-base font-medium'>Email</label>
+                  <input type="email" id="email" className='w-full rounded-lg py-2 px-3 text-base font-medium shadow border border-white/20' placeholder="support@traily.pl" required />
                 </div>
                 <div className='form-group mb-4'>
-                  <label className='mb-1 block text-base font-medium'>Message</label>
-                  <textarea rows="4" name="message" id="message" placeholder="Your problems or bugs..." className="w-full resize-none rounded-lg py-1 px-2 text-base font-medium shadow border border-white/20"></textarea>
+                  <label htmlFor="message" className='mb-1 block text-base font-medium'>Message</label>
+                  <textarea rows="4" id="message" placeholder="Your problems or bugs..." className="w-full resize-none rounded-lg py-2 px-3 text-base font-medium shadow border border-white/20" required></textarea>
                 </div>
                 <div className='w-full flex justify-end'>
-                  <button type='submit' className="w-full lg:w-auto rounded-md lg:rounded-xl bg-[#104f89] py-3 px-6 text-white">Submit</button>
+                  <button type='submit' className="w-full lg:w-auto rounded-md lg:rounded-xl bg-[#104f89] py-3 px-6 text-white transition-colors duration-200">Submit</button>
                 </div>
               </form>
             </div>
