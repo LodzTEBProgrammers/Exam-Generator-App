@@ -31,18 +31,15 @@ export default class Core extends Paths {
     static readAndSaveJson = function readAndSaveJson(type, newExam) {
         try {
             const file = Core.readJson(type);
-            // const path = paths.getPathExams(type);
-            // const content = fs.readFile(path, 'utf-8')
-            console.log("File before parse: " + content)
-            // const parsedFile = JSON.parse(file)
+            if (file === null) {
+                throw new Error("Failed to read JSON file");
+            }
             file.push(newExam);
-            // const parsedFile = JSON.parse(file);
-            console.log("File parsed: " + content)
-            // return parsedFile;
-            fs.writeFileSync(path, JSON.stringify(file));
+            const filePath = paths.getPathExams(type);
+            fs.writeFileSync(filePath, JSON.stringify(file, null, 2));
             return file;
         } catch (err) {
-            console.log(err);
+            console.log("Error saving data to JSON: " + err);
         }
     }
 }

@@ -1,11 +1,10 @@
 import path from "path";
 import { ActionsTypes } from "./coreType.js";
 
-const basePath = path.join(process.cwd(), 'data');
 export class Paths{
 
     constructor() {
-        this.basePath = basePath;
+        this.basePath = path.join(process.cwd(), 'data');
     }
 
     getPathExams(type){

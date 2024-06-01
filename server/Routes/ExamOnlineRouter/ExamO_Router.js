@@ -32,11 +32,9 @@ examOnlineRouter.post(`/${data.traily}/create/:type`, checkSchema(examSchema), a
   const errors = validationResult(req);
   if (!errors.isEmpty()) return res.status(400).send(errors.array());
   try {
-    // let path = paths.getPathExams(type);
     let exams = Core.readJson(type);
     const newExam = { id: exams[exams.length - 1].id + 1, ...body };
-    exams.push(newExam);
-    Core.readAndSaveJson(type);
+    Core.readAndSaveJson(type, newExam);
     return res.status(200).send(newExam);
   } catch (err) {
     res.status(500).send({ status: "Error reading and saving JSON file" })
