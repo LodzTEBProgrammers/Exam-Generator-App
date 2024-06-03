@@ -13,8 +13,22 @@ Co ma znajdować się w Core aplikacji:
 */
 const paths = new Paths();
 export default class Core extends Paths {
-    
-    static readJson = function readJson(type) {
+    constructor() {
+        super();
+    }
+    static saveJson(path,exams){
+        try{
+            if (path !== null && exams !== null) {
+                fs.writeFileSync(path.trim(),JSON.stringify(exams));
+            } else {
+                throw new Error("Error in given parameters")
+            }
+        } catch(er){
+            console.log("Error reading JSON:", er);
+            
+        }
+    }
+    static readJson = (type) =>{
         try {
             const filePath = paths.getPathExams(type);
             const file = fs.readFileSync(filePath, 'utf-8'); // Dodaj kodowanie 'utf-8'
@@ -28,7 +42,7 @@ export default class Core extends Paths {
         }
     }
 
-    static readAndSaveJson = function readAndSaveJson(type, newExam) {
+    static readAndSaveJson = (type, newExam) =>{
         try {
             const file = Core.readJson(type);
             if (file === null) {
@@ -40,6 +54,17 @@ export default class Core extends Paths {
             return file;
         } catch (err) {
             console.log("Error saving data to JSON: " + err);
+        }
+    }
+
+    static removeTaskById = (type, id) =>{
+        try {
+            const filePath = paths.getPathExams(type);
+            const file = fs.readFileSync(filePath, 'utf-8');
+            if (file === null) throw new Error("Failed to read JSON file");
+            
+        } catch (err) {
+            
         }
     }
 }

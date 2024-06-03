@@ -3,7 +3,7 @@ import fs from "fs";
 import express from 'express';
 import { checkSchema, validationResult } from 'express-validator';
 import { examSchema } from '../../schemas/checkExamQuery.js';
-import { resolveIndexByExamId } from '../../utils/middlewares.js';
+import { resolveIndexByExamId, patchExamById,resolveByExamId } from '../../utils/middlewares.js';
 import Core from '../../core/Core.js';
 import { Paths } from '../../core/Paths.js';
 
@@ -11,9 +11,10 @@ const examOnlineRouter = express.Router();
 const paths = new Paths();
 const path = paths.getPathExams("ExamOnline");
 const constantType = "ExamOnline";
+const exams = Core.readJson()
 // main route traily: "/dashboard/exams/online"
 // Wyświetlanie egzaminów
-examOnlineRouter.get(`/${data.traily}`, (req, res) => {
+examOnlineRouter.get(`/${data.traily}/`, (req, res) => {
     res.status(200).json({ data: exams });
 });
 
@@ -85,11 +86,13 @@ examOnlineRouter.patch(`/${data.traily}/update/:id`, patchExamById, (req, res) =
 });
 
 // Usuwanie egzaminu
-examOnlineRouter.delete(`/${data.traily}/delete/:id`, resolveIndexByExamId, (req, res) => {
-    const { foundExamIndex } = req;
+examOnlineRouter.delete(`/${data.traily}/delete/:id`, resolveByExamId, (req, res) => {
+    const { exams } = req;
+    if (!exams) return res.status(400).send("Exams not found");
     exams.splice(foundExamIndex, 1);
+    Core.saveJson(path,exams);
+
     res.status(200).send("Exam was successfully deleted");
-    fs.appendFileSync(path,exams);
 });
 
 
