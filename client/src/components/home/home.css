@@ -1,14 +1,13 @@
-
 /*Obliczanie długości hero dla komputera full hd */
 @media (min-width: 1024px) {
-    .hero{
+    .hero {
         height: calc(94vh - 60px) !important;
     }
 }
+
 /*Obliczanie długości i szerokości hero dla Quad HD*/
-@media (min-width:1440px) {
-    
-}
+@media (min-width:1440px) {}
+
 .hero h1 {
     font-size: var(--h-2);
     color: var(--Text-DarkMode);
@@ -16,59 +15,40 @@
     margin-bottom: var(--s-2);
     text-align: justify;
 }
+
 @media (max-width: 768px) {
     .hero h1 {
         font-size: var(--h-4);
     }
 }
+
 .hero p {
     font-size: var(--p-4);
     color: var(--TextSecond-DarkMode);
     margin-bottom: var(--s-2);
-    text-align:justify;
+    text-align: justify;
 }
+
 @media (max-width: 768px) {
     .hero p {
         font-size: var(--p-2);
     }
 }
+
 .hero .custom-card-h {
     color: var(--Primary-DarkMode);
     font-size: var(--p-5);
     margin-bottom: 0;
 }
+
 .hero .custom-card-p {
     color: var(--TextThird-DarkMode);
     font-size: var(--p-1);
     margin-bottom: 0;
 }
+
 .hero .custom-flash-svg {
     color: var(--Primary-DarkMode);
-}
-
-
-.info {
-    background: var(--Background-DarkMode);
-}
-
-.info h2 {
-    font-size: var(--h-1);
-    color: var(--Text-DarkMode);
-    font-weight: bold;
-    text-align: center;
-    position: relative;
-}
-
-.info h2::after {
-    content: ''; 
-    position: absolute; 
-    bottom: -10px; 
-    left: 0; 
-    right: 0;
-    width: 120px; 
-    margin: 0 auto;
-    height: 5px; 
-    background-color: var(--Accent-DarkMode); 
 }
 
 @media (max-width: 768px) {
@@ -90,15 +70,15 @@
 }
 
 .contact h2::after {
-    content: ''; 
-    position: absolute; 
-    bottom: -10px; 
-    left: 0; 
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
     right: 0;
-    width: 120px; 
+    width: 120px;
     margin: 0 auto;
-    height: 5px; 
-    background-color: var(--Accent-DarkMode); 
+    height: 5px;
+    background-color: var(--Accent-DarkMode);
 }
 
 @media (max-width: 768px) {
@@ -121,10 +101,12 @@
     color: var(--TextSecond-DarkMode);
     text-align: center;
 }
+
 @media (max-width: 768px) {
     .contact h3 {
         font-size: var(--h-4);
     }
+
     .contact-box p {
         font-size: var(--p-2);
     }
