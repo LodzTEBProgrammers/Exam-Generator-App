@@ -1,9 +1,14 @@
+
+/*Obliczanie długości hero dla komputera full hd */
 @media (min-width: 1024px) {
     .hero{
         height: calc(94vh - 60px) !important;
     }
 }
-
+/*Obliczanie długości i szerokości hero dla Quad HD*/
+@media (min-width:1440px) {
+    
+}
 .hero h1 {
     font-size: var(--h-2);
     color: var(--Text-DarkMode);
@@ -70,27 +75,6 @@
     .info h2 {
         font-size: var(--h-2);
     }
-}
-.info-box .custom-info-radius {
-    border-radius: 30px;
-}
-.info-box .custom-l {
-    color: var(--Text-DarkMode);
-    font-size: var(--h-1_2);
-    font-weight: bold;
-    margin-bottom: 0;
-}
-.info-box .custom-h {
-    color: var(--Text-DarkMode);
-    font-size: var(--p-5);
-    margin-bottom: var(--s-1);
-    text-align: justify;
-}
-.info-box .custom-p {
-    color: var(--TextSecond-DarkMode);
-    font-size: var(--p-1);
-    margin-bottom: 0;
-    text-align: justify;
 }
 
 .contact {

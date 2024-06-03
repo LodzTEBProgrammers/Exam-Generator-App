@@ -2,11 +2,14 @@ import "./navbar.css";
 import { useState } from "react";
 import Traily from "../../assets/imgs/Traily Logo.png";
 
-function Navbar() {
+function Navbar({ infoRef, contactRef }) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
+    const handleScroll = (ref) => {
+        ref.current.scrollIntoView({ behavior: 'smooth' });
+      };
     return (
         <header className="header flex flex-wrap sm:justify-start sm:flex-nowrap z-50 lg:w-8/12 rounded-lg mx-auto mt-0 lg:mt-5 py-5 border border-white/20">
             <nav className="relative w-full lg:w-12/12 px-4 lg:flex lg:items-center lg:justify-between">
@@ -26,7 +29,7 @@ function Navbar() {
                 </div>
                 <ul className="hidden lg:relative lg:flex lg:ml-auto lg:items-center lg:w-auto lg:space-x-4">
                     <li>
-                        <a className="nav-link relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left" href="#">
+                        <a className="nav-link relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left ::hover cursor-pointer " href="#">
                             Home
                         </a>
                     </li>
@@ -36,7 +39,7 @@ function Navbar() {
                         </svg>
                     </li>
                     <li>
-                        <a className="nav-link relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left" href="#">
+                        <a className="nav-link relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left ::hover cursor-pointer " onClick={() => handleScroll(infoRef)} >
                             How it works
                         </a>
                     </li>
@@ -46,7 +49,7 @@ function Navbar() {
                         </svg>
                     </li>
                     <li>
-                        <a className="nav-link relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left" href="#">
+                        <a className="nav-link relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left ::hover cursor-pointer " onClick={() => handleScroll(contactRef)} >
                             Contact
                         </a>
                     </li>
@@ -56,7 +59,7 @@ function Navbar() {
                         </svg>
                     </li>
                     <li>
-                        <a className="nav-link  relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left" href="#">
+                        <a className="nav-link  relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left ::hover cursor-pointer " href="#">
                             FAQ
                         </a>
                     </li>
@@ -76,12 +79,12 @@ function Navbar() {
                         </a>
                     </li>
                     <li>
-                        <a className="nav-link mb-3 relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left" href="#">
+                        <a className="nav-link mb-3 relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left" href="#" onClick={() => handleScroll(infoRef)}>
                             How it work?
                         </a>
                     </li>
                     <li>
-                        <a className="nav-link mb-3 relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left" href="#">
+                        <a className="nav-link mb-3 relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left" href="#" onClick={() => handleScroll(contactRef)}>
                             Contact
                         </a>
                     </li>

@@ -1,38 +1,32 @@
-
 const Info_card = ({id,title,description}) => {
-    
     return (
         <>
-   
-        {
-            id % 2 == 0 ? (
-                <div className="flex justify-end items-center mb-12">
-                <div className='flex bg-blue-500 custom-info-radius px-8 py-4 order-1'>
-                  <p className='custom-l'>
+          { id % 2 == 0 ? (
+              <div className="flex justify-end items-center gap-4">
+                <div className='w-[96px] h-[96px] flex items-center bg-[--Primary-DarkMode] rounded-[30px] order-1'>
+                  <h2 className='text-[40px] text-[--Text-DarkMode]'>
                     {id}
-                  </p>
+                  </h2>
                 </div>
-                <div className="mr-5">
-                  <p className="font-bold text-lg lg:text-xl custom-h">{title}</p>
-                  <p className="text-sm lg:text-base custom-p">{description}</p>
+                <div className="flex flex-col gap-2">
+                  <h4 className="font-semibold text-[--Text-DarkMode]">{title}</h4>
+                  <p className="text-[--TextSecond-DarkMode]">{description}</p>
                 </div>
               </div>
-            ) :
-            (
-                <div className="flex items-center mb-12">
-                <div className='flex bg-blue-500 custom-info-radius px-8 py-4'>
-                  <p className='custom-l'>
+            ) : (
+              <div className="flex items-center gap-4">
+                <div className='w-[96px] h-[96px] flex items-center bg-[--Primary-DarkMode] rounded-[30px] order-1'>
+                  <h2 className='text-[40px] text-[--Text-DarkMode]'>
                     {id}
-                  </p>
+                  </h2>
                 </div>
-                <div className="ml-5">
-                  <p className="font-bold text-lg lg:text-xl custom-h">{title}</p>
-                  <p className="text-sm lg:text-base custom-p">{description}</p>
+                <div className="flex flex-col gap-2">
+                  <h4 className="font-semibold text-[--Text-DarkMode]">{title}</h4>
+                  <p className="text-[--TextSecond-DarkMode]">{description}</p>
                 </div>
               </div>
-            )
-        }
-          </>
+            )}
+        </>
     )
 }
 

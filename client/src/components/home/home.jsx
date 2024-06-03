@@ -4,9 +4,10 @@ import Info_card from './utils/Info_card';
 import { useRef, useState } from 'react';
 import data from './utils/data';
 
-const Home = () => {
-  const infoRef = useRef(null);
-  const [questions,setQuestions] = useState(data.questions)
+const Home = ({infoRef,contactRef}) => {
+
+  const [questions, setQuestions] = useState(data.questions);
+  
   return (
     <>
       <section className='hero relative z-10 flex justify-center items-start h-full  mt-4 mb-10 lg:mt-0'>
@@ -77,24 +78,29 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="info flex h-full w-full" ref={infoRef}>
+      <section id="info" className="info flex h-full w-full" ref={infoRef}>
         <div className='container lg:w-8/12 mt-16 justify-center mx-auto'>
-          <h2>How does it work?</h2>
+          <div className='flex flex-col items-center gap-2'>
+            <h1 className="text-[56px] text-white font-extrabold">How it work?</h1>
+            <hr className='w-[120px] border-[3px] border-[--Accent-DarkMode] rounded-full'></hr>
+          </div>
           <div className='info-box px-5 mt-24 lg:px-0 lg:w-12/12 flex flex-col justify-center mx-auto'>
-           {
+            {
             questions.map(({id,title,description})=>(
               <>
-              <Info_card id={id} title={title} description={description}/>
+                <Info_card key={id} id={id} title={title} description={description}/>
               </>
             ))
-           }
-
+            } 
           </div>
         </div>
       </section>
-      <section className="contact flex h-full w-full pb-24 lg:pb-56">
+      <section id="contact" className="contact flex h-full w-full pb-24 pt-20 lg:pb-56" ref={contactRef}>
         <div className='container lg:w-6/12 mt-16 justify-center mx-auto'>
-          <h2>Contact</h2>
+          <div className='flex flex-col items-center gap-2'>
+            <h1 className="text-[56px] text-white font-extrabold">Contact</h1>
+            <hr className='w-[120px] border-[3px] border-[--Accent-DarkMode] rounded-full'></hr>
+          </div>
           <div className='contact-box px-5 lg:px-0 mt-16 flex flex-col justify-center mx-auto w-full'>
             <h3>Send us a message if you had any problems</h3>
             <p>We are here to solve your problems related to our tool.</p>
