@@ -1,13 +1,18 @@
 import './home.css';
 import HeroImage from '../../assets/imgs/Hero_image.png';
+import Info_card from './utils/Info_card';
+import { useRef, useState } from 'react';
+import data from './utils/data';
 
 const Home = () => {
+  const infoRef = useRef(null);
+  const [questions,setQuestions] = useState(data.questions)
   return (
     <>
-      <section className='hero relative z-10 flex justify-center items-center h-full lg:h-screen mt-16 mb-16 lg:mt-0'>
-        <div className='container flex flex-col lg:flex-row lg:w-8/12 flex-wrap justify-center mx-auto'>
+      <section className='hero relative z-10 flex justify-center items-start h-full  mt-4 mb-10 lg:mt-0'>
+        <div className='container flex flex-col lg:flex-row lg:w-8/12 lg:h-2/3 flex-wrap justify-center mx-auto'>
           <div className='grid grid-flow-col auto-cols-2 px-5  lg:px-0'>
-            <div className='flex flex-col justify-center lg:items-start lg:text-left lg:w-5/6'>
+            <div className='flex flex-col justify-center lg:items-start lg:text-left lg:w-4/7 my-10'>
               <h1 className='leading-snug'>
                 Traily is an innovative platform designed to simplify the process of exam creation and management
               </h1>
@@ -38,6 +43,7 @@ const Home = () => {
                   <p className="font-bold text-lg lg:text-xl custom-card-h">Fast in use</p>
                   <p className="text-sm lg:text-base custom-card-p">50% more productivity</p>
                 </div>
+                
               </div>
               <div className="rounded-lg overflow-hidden shadow-lg bg-white flex items-center p-5">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 custom-flash-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -59,74 +65,30 @@ const Home = () => {
               </div>
             </div>
             <div className="flex justify-center items-center h-full">
-              <div className="w-12 h-12 bg-blue-500 rounded-full flex border bg-white/15 border-white/35 drop-shadow-2xl justify-center items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" className="w-6 h-6">
+              <div className="w-12 h-12 bg-blue-500 rounded-full flex border bg-white/15 border-white/35 drop-shadow-2xl justify-center items-center" onClick={()=>{
+                infoRef.current.scrollIntoView({behavior: 'smooth'});
+              }}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" className="w-6 h-6" href='#'>
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  
                 </svg>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section className="info flex h-full w-full">
+      <section className="info flex h-full w-full" ref={infoRef}>
         <div className='container lg:w-8/12 mt-16 justify-center mx-auto'>
-          <h2>How it work?</h2>
+          <h2>How does it work?</h2>
           <div className='info-box px-5 mt-24 lg:px-0 lg:w-12/12 flex flex-col justify-center mx-auto'>
-            <div className="flex items-center mb-12">
-              <div className='flex bg-blue-500 custom-info-radius px-8 py-4'>
-                <p className='custom-l'>
-                  1
-                </p>
-              </div>
-              <div className="ml-5">
-                <p className="font-bold text-lg lg:text-xl custom-h">You need be loged in</p>
-                <p className="text-sm lg:text-base custom-p">Your first step is to login into the panel</p>
-              </div>
-            </div>
-            <div className="flex justify-end items-center mb-12">
-              <div className='flex bg-blue-500 custom-info-radius px-8 py-4 order-1'>
-                <p className='custom-l'>
-                  2
-                </p>
-              </div>
-              <div className="mr-5">
-                <p className="font-bold text-lg lg:text-xl custom-h">You need be loged in</p>
-                <p className="text-sm lg:text-base custom-p">Your first step is to login into the panel</p>
-              </div>
-            </div>
-            <div className="flex items-center mb-12">
-              <div className='flex bg-blue-500 custom-info-radius px-8 py-4'>
-                <p className='custom-l'>
-                  3
-                </p>
-              </div>
-              <div className="ml-5">
-                <p className="font-bold text-lg lg:text-xl custom-h">You need be loged in</p>
-                <p className="text-sm lg:text-base custom-p">Your first step is to login into the panel</p>
-              </div>
-            </div>
-            <div className="flex justify-end items-center mb-12">
-              <div className='flex bg-blue-500 custom-info-radius px-8 py-4 order-1'>
-                <p className='custom-l'>
-                  4
-                </p>
-              </div>
-              <div className="mr-5">
-                <p className="font-bold text-lg lg:text-xl custom-h">You need be loged in</p>
-                <p className="text-sm lg:text-base custom-p">Your first step is to login into the panel</p>
-              </div>
-            </div>
-            <div className="flex items-center mb-12">
-              <div className='flex bg-blue-500 custom-info-radius px-8 py-4'>
-                <p className='custom-l'>
-                  5
-                </p>
-              </div>
-              <div className="ml-5">
-                <p className="font-bold text-lg lg:text-xl custom-h">You need be loged in</p>
-                <p className="text-sm lg:text-base custom-p">Your first step is to login into the panel</p>
-              </div>
-            </div>
+           {
+            questions.map(({id,title,description})=>(
+              <>
+              <Info_card id={id} title={title} description={description}/>
+              </>
+            ))
+           }
+
           </div>
         </div>
       </section>
