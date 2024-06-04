@@ -3,7 +3,7 @@ import fs from "fs";
 import express from 'express';
 import { checkSchema, validationResult } from 'express-validator';
 import { examSchema } from '../../schemas/checkExamQuery.js';
-import { resolveIndexByExamId, patchExamById,resolveByExamId } from '../../utils/middlewares.js';
+import { resolveIndexByExamId, patchExamById,resolveByExamId, deleteExamById } from '../../utils/middlewares.js';
 import Core from '../../core/Core.js';
 import { Paths } from '../../core/Paths.js';
 
@@ -86,13 +86,12 @@ examOnlineRouter.patch(`/${data.traily}/update/:id`, patchExamById, (req, res) =
 });
 
 // Usuwanie egzaminu
-examOnlineRouter.delete(`/${data.traily}/delete/:id`, resolveByExamId, (req, res) => {
-    const { exams } = req;
-    if (!exams) return res.status(400).send("Exams not found");
-    exams.splice(foundExamIndex, 1);
-    Core.saveJson(path,exams);
-
-    res.status(200).send("Exam was successfully deleted");
+examOnlineRouter.delete(`/${data.traily}/delete/:id`, deleteExamById, (req, res) => {
+  const { exams, foundExamIndex } = req;
+  if (!exams) return res.status(400).send("Exams not found");
+  exams.splice(foundExamIndex, 1);
+  Core.saveJson(path, exams);
+  res.status(200).send("Exam was successfully deleted");
 });
 
 

@@ -2,7 +2,10 @@ import fs from 'fs'
 let path = './data/examModelOnline.json';
 let exams = JSON.parse(fs.readFileSync(path));
 import Core from '../core/Core.js';
+// do napisanie aby zwracało w req.exams egzaminy aby nie ładować z ciągle poprzez fs.readFileSync()
+export const getExams = (req,res,next)=>{
 
+}
 export const resolveIndexByExamId = (req, res, next) => {
     const { id } = req.params;
     const parsedId = parseInt(id);
@@ -41,6 +44,9 @@ export const deleteExamById = (req, res, next) => {
     const { id } = req.params;
     const parsedId = parseInt(id);
     if (isNaN(parsedId)) return res.status(400).send("Invalid id");
-    const foundExamIndex = exams.findIndex((exam) => exam.id === id);
+    const foundExamIndex = exams.findIndex((exam) => exam.id === parsedId);
     if (foundExamIndex === -1) return res.status(404).send("Exam index was not found");
-}
+    req.exams = exams;
+    req.foundExamIndex = foundExamIndex;
+    next();
+  }
