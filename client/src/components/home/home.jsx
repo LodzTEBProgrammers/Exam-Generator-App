@@ -10,7 +10,7 @@ const Home = ({ infoRef, contactRef }) => {
 
   return (
     <>
-      <section className='hero relative z-10 flex justify-center items-start h-full  mt-4 mb-10 lg:mt-0'>
+      <section className='hero relative z-10 flex justify-center items-start h-full  mt-4 mb-11 lg:mt-0 '>
         <div className='container flex flex-col lg:flex-row lg:w-8/12 lg:h-2/3 flex-wrap justify-center mx-auto'>
           <div className='grid grid-flow-col auto-cols-2 px-5  lg:px-0'>
             <div className='flex flex-col justify-center lg:items-start lg:text-left lg:w-4/7 my-10'>
@@ -67,7 +67,7 @@ const Home = ({ infoRef, contactRef }) => {
             </div>
             <div className="flex justify-center items-center h-full">
               <div className="w-12 h-12 bg-blue-500 rounded-full flex border bg-white/15 border-white/35 drop-shadow-2xl justify-center items-center" onClick={() => {
-                infoRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                infoRef.current.scrollIntoView({ behavior: 'smooth'});
               }}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" className="w-6 h-6" href='#'>
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
@@ -78,7 +78,8 @@ const Home = ({ infoRef, contactRef }) => {
           </div>
         </div>
       </section>
-      <section className="flex flex-col justify-center h-[940px] w-full gap-[96px] bg-[--Background-DarkMode] py-12" ref={infoRef}>
+      {/*h-[940px] zostalo zamienione na h-screen w sekcji info i contact*/}
+      <section className="flex flex-col justify-center h-screen w-full gap-[96px] bg-[--Background-DarkMode] py-12" ref={infoRef}>
         <div className='flex flex-col items-center'>
           <h1 className="text-[56px] text-white font-extrabold">How it work?</h1>
           <hr className='w-[120px] border-[3px] border-[--Accent-DarkMode] rounded-full'></hr>
@@ -93,9 +94,9 @@ const Home = ({ infoRef, contactRef }) => {
           }
         </div>
       </section>
-      <section className="flex flex-col justify-center w-full gap-12 bg-[--Background-DarkMode] py-12" ref={contactRef}>
+      <section className="flex flex-col justify-center h-full w-full gap-12 bg-[--Background-DarkMode] py-13" ref={contactRef}>
         <div className='flex flex-col items-center'>
-          <h1 className="text-[56px] text-white font-extrabold">Contact</h1>
+          <h1 className="text-[56px] text-white font-extrabold mt-10 ">Contact</h1>
           <hr className='w-[120px] border-[3px] border-[--Accent-DarkMode] rounded-full'></hr>
         </div>
         <div className='flex flex-col items-center gap-12 px-2 py-4 mx-auto'>

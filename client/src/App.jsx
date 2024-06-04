@@ -12,7 +12,7 @@ function App() {
       <main className="layout">
         <Home  infoRef={infoRef} contactRef={contactRef}  />
       </main>
-      <Footer />
+      <Footer infoRef={infoRef} />
     </>
   );
 }

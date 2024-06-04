@@ -1,12 +1,12 @@
 /*Obliczanie długości hero dla komputera full hd */
 @media (min-width: 1024px) {
     .hero {
-        height: calc(94vh - 60px) !important;
+        height: calc(93.5vh - 60px) !important;
     }
 }
 
 /*Obliczanie długości i szerokości hero dla Quad HD*/
-@media (min-width:1440px) {}
+
 
 .hero h1 {
     font-size: var(--h-2);
