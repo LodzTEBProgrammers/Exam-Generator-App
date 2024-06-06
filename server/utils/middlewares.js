@@ -22,6 +22,7 @@ export const resolveByExamId = (req, res, next) => {
     req.exam = foundexam;
     next();
 };
+
  // This typically happens when your route handler tries to send multiple responses for a single request, which is not allowed.
 export const patchExamByIdMiddle = (req, res, next) => {
     const { id } = req.params;

@@ -14,7 +14,7 @@ const examOnlineRouter = express.Router();
 
 // Main route traily: "/dashboard/exams/online"
 // Wyświetlanie egzaminów
-examOnlineRouter.get(`/${data.traily}/`, getExams);
+examOnlineRouter.get(`/${data.traily}`, getExams);
 
 examOnlineRouter.get(`/${data.traily}/data/:type`,getExamsByType);
 
@@ -35,4 +35,5 @@ examOnlineRouter.patch(`/${data.traily}/update/:id`, patchExamByIdMiddle, patchE
 // Usuwanie egzaminu
 examOnlineRouter.delete(`/${data.traily}/delete/:id`, deleteExamByIdMiddle, deleteExamById);
 
+examOnlineRouter.get(`/${data.traily}/getExam`,getExamById)
 export default examOnlineRouter;

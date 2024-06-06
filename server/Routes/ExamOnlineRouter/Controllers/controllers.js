@@ -3,7 +3,6 @@ import { Paths } from "../../../core/Paths.js";
 import dataType from "../constants.js";
 import { validationResult } from 'express-validator';
 const paths = new Paths();
-
 const getExams = (req, res) => {
     const examPath = paths.getPathExams(dataType.examOnline);
     const exams = Core.readJson(examPath);
@@ -22,24 +21,27 @@ const getExamsByType = (req, res) => {
     } 
 }
 
-const createExamByType = async (req, res) => {
-    const { body } = req;
-    const { type } = req.params;
-    const errors = validationResult(req);
+// const createExamByType = async (req, res) => {
+//     const { body } = req;
+//     const { type } = req.params;
+//     const errors = validationResult(req);
     
-    if (!errors.isEmpty()) {
-        return res.status(400).send(errors.array());
-    }
+//     if (!errors.isEmpty()) {
+//         return res.status(400).send(errors.array());
+//     }
     
-    try {
-        let exams = Core.readJson(type);
-        const newExam = { id: exams[exams.length - 1].id + 1, ...body };
-        Core.readAndSaveJson(type, newExam);
-        return res.status(200).send(newExam);
-    } catch (err) {
-        return res.status(500).send({ status: "Error reading and saving JSON file" });
-    }
-}
+//     try {
+//         let exams = Core.readJson(type);
+//         const newExam = { id: exams[exams.length - 1].id + 1, ...body };
+//         Core.readAndSaveJson(type, newExam);
+//         return res.status(200).send(newExam);
+//     } catch (err) {
+//         return res.status(500).send({ status: "Error reading and saving JSON file" });
+//     }
+// }
+
+
+// wyciągniejcie z req.body wszystkie dane z jsona i poddajcie je walidacji np poprzez schemat, czy też stworzenie nowego middleware
 const createExam = (req, res) => {
     const { body } = req;
     const errors = validationResult(req);
@@ -96,8 +98,7 @@ const deleteExamById = (req, res) => {
 
 export const Controllers = {
     getExams, 
-    getExamsByType, 
-    createExamByType,
+    getExamsByType,
     getExamById,
     getExamByUser,
     patchExamById,
