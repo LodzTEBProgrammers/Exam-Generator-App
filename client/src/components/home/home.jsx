@@ -10,11 +10,11 @@ const Home = ({ infoRef, contactRef }) => {
 
   return (
     <>
-      <section className='hero relative z-10 flex justify-center items-start h-full  mt-4 mb-11 lg:mt-0 '>
+      <section className='hero  relative z-10 flex justify-center items-start h-full  mt-4 mb-11 lg:mt-0 '>
         <div className='container flex flex-col lg:flex-row lg:w-8/12 lg:h-2/3 flex-wrap justify-center mx-auto'>
           <div className='grid grid-flow-col auto-cols-2 px-5  lg:px-0'>
             <div className='flex flex-col justify-center lg:items-start lg:text-left lg:w-4/7 my-10'>
-              <h1 className='leading-snug'>
+              <h1 className='text-[25px] lg:text-[28px] xl:text-[36px] leading-snug'>
                 Traily is an innovative platform designed to simplify the process of exam creation and management
               </h1>
               <p>
@@ -71,20 +71,18 @@ const Home = ({ infoRef, contactRef }) => {
               }}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" className="w-6 h-6" href='#'>
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-
                 </svg>
               </div>
             </div>
           </div>
         </div>
       </section>
-      {/*h-[940px] zostalo zamienione na h-screen w sekcji info i contact*/}
-      <section className="flex flex-col justify-center h-screen w-full gap-[96px] bg-[--Background-DarkMode] py-12" ref={infoRef}>
-        <div className='flex flex-col items-center'>
-          <h1 className="text-[56px] text-white font-extrabold">How it work?</h1>
+      <section className="flex flex-col justify-center h-full w-full  bg-[--Background-DarkMode] py-12 px-5 lg:px-0" ref={infoRef}>
+        <div className='flex flex-col items-center mb-16'>
+          <h2 className="text-[36px] lg:text-[56px] text-white font-extrabold">How it work?</h2>
           <hr className='w-[120px] border-[3px] border-[--Accent-DarkMode] rounded-full'></hr>
         </div>
-        <div className='flex w-[1000px] flex-col justify-center mx-auto gap-8'>
+        <div className='flex sm:w-full lg:w-[700px] xl:w-[1000px] flex-col justify-center mx-auto gap-8'>
           {
             questions.map(({ id, title, description }) => (
               <>
@@ -94,15 +92,15 @@ const Home = ({ infoRef, contactRef }) => {
           }
         </div>
       </section>
-      <section className="flex flex-col justify-center h-full w-full gap-12 bg-[--Background-DarkMode] py-13" ref={contactRef}>
-        <div className='flex flex-col items-center'>
-          <h1 className="text-[56px] text-white font-extrabold mt-10 ">Contact</h1>
+      <section className="flex flex-col justify-center h-full w-full gap-6 bg-[--Background-DarkMode] py-13" ref={contactRef}>
+        <div className='flex flex-col items-center mb-6'>
+          <h1 className="text-[36px] lg:text-[56px] text-white font-extrabold mt-10 ">Contact</h1>
           <hr className='w-[120px] border-[3px] border-[--Accent-DarkMode] rounded-full'></hr>
         </div>
-        <div className='flex flex-col items-center gap-12 px-2 py-4 mx-auto'>
-          <div className='flex flex-col w-[640px] text-center gap-6'>
-            <h1 className='font-medium text-white'>Send us a message if you had any problems</h1>
-            <h5 className='font-normal text-[--TextSecond-DarkMode]'>We are here to solve your problems related to our tool.</h5>
+        <div className='flex flex-col items-center px-5 mx-auto pb-16'>
+          <div className='flex flex-col xl:w-[640px] text-center gap-6'>
+            <h2 className='text-[25px] lg:text-[36px] xl:text-[48px] text-[font-medium text-white'>Send us a message if you had any problems</h2>
+            <h5 className='font-normal text-[14px] lg:text-[18px] text-[--TextSecond-DarkMode]'>We are here to solve your problems related to our tool.</h5>
           </div>
           <div className="border rounded-lg border-white/30 md:w-6/12 lg:w-4/5 xl:w-3/8 mx-auto mt-16">
             <form className='p-4'>
