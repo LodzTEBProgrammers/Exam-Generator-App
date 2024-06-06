@@ -3,12 +3,12 @@ import { Paths } from "../../../core/Paths.js";
 import dataType from "../constants.js";
 import { validationResult } from 'express-validator';
 const paths = new Paths();
+
 const getExams = (req, res) => {
-    const examPath = paths.getPathExams(dataType.examOnline);
-    const exams = Core.readJson(examPath);
+    const exams = Core.readJson(dataType.examOnline);
     res.status(200).json({ data: exams });
 }
-
+/*
 const getExamsByType = (req, res) => {
     const { type } = req.params;
     const examPath = paths.getPathExams(type);
@@ -20,7 +20,7 @@ const getExamsByType = (req, res) => {
         return res.status(404).send({ status: "file was not found" });
     } 
 }
-
+*/
 // const createExamByType = async (req, res) => {
 //     const { body } = req;
 //     const { type } = req.params;
@@ -97,8 +97,7 @@ const deleteExamById = (req, res) => {
 };
 
 export const Controllers = {
-    getExams, 
-    getExamsByType,
+    getExams,
     getExamById,
     getExamByUser,
     patchExamById,
