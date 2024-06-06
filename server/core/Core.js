@@ -4,7 +4,6 @@ import { ActionsTypes } from "./coreType.js";
 import path, { parse } from "path";
 
 
-
 /*
 Co ma znajdować się w Core aplikacji:
 - ma to być dynamiczne
