@@ -1,82 +1,50 @@
 import './home.css';
 import HeroImage from '../../assets/imgs/Hero_image.png';
-import Info_card from './utils/Info_card';
-import { useRef, useState } from 'react';
+import Question_card from './utils/Info_card';
+import { useState } from 'react';
 import data from './utils/data';
+import Info_card from './utils/minimalistic_card';
+import Icon from './utils/icon';
 
 const Home = ({ infoRef, contactRef }) => {
 
   const [questions, setQuestions] = useState(data.questions);
+  const [info, setInfo] = useState(data.info);
 
   return (
     <>
-      <section className='hero relative z-10 flex justify-center items-start h-full  mt-4 mb-11 lg:mt-0 '>
-        <div className='container flex flex-col lg:flex-row lg:w-8/12 lg:h-2/3 flex-wrap justify-center mx-auto'>
-          <div className='grid grid-flow-col auto-cols-2 px-5  lg:px-0'>
-            <div className='flex flex-col justify-center lg:items-start lg:text-left lg:w-4/7 my-10'>
-              <h1 className='leading-snug'>
+      <section className='hero relative z-10'>
+        <div className='flex flex-col justify-center items-center h-[880px]'>
+          <div className='flex gap-12'>
+            <div className='flex flex-col justify-center w-[660px] gap-6 lg:items-start lg:text-left'>
+              <h1 className='text-[3.5rem] leading-[4rem] font-bold text-white'>
                 Traily is an innovative platform designed to simplify the process of exam creation and management
               </h1>
-              <p>
+              <h3 className='font-medium text-[--TextSecond-DarkMode]'>
                 We are the best option for you!
-              </p>
+              </h3>
             </div>
-            <div className='hidden lg:block lg:w-6/6'>
-              <img src={HeroImage} alt="Hero Obraz" className="max-w-full h-auto" />
-            </div>
+            <img src={HeroImage} alt="Hero Obraz" className="max-w-full h-auto" />
           </div>
-          <div className="px-5 lg:px-0 mt-12 lg:mt-6 w-full">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 mb-12 lg:mb-6">
-              <div className="rounded-lg overflow-hidden shadow-lg bg-white flex items-center p-5">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 custom-flash-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-                <div className="ml-5">
-                  <p className="font-bold text-lg lg:text-xl custom-card-h">Fast in use</p>
-                  <p className="text-sm lg:text-base custom-card-p">50% more productivity</p>
-                </div>
-              </div>
-              <div className="rounded-lg overflow-hidden shadow-lg bg-white flex items-center p-5">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 custom-flash-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-                <div className="ml-5">
-                  <p className="font-bold text-lg lg:text-xl custom-card-h">Fast in use</p>
-                  <p className="text-sm lg:text-base custom-card-p">50% more productivity</p>
-                </div>
-
-              </div>
-              <div className="rounded-lg overflow-hidden shadow-lg bg-white flex items-center p-5">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 custom-flash-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-                <div className="ml-5">
-                  <p className="font-bold text-lg lg:text-xl custom-card-h">Fast in use</p>
-                  <p className="text-sm lg:text-base custom-card-p">50% more productivity</p>
-                </div>
-              </div>
-              <div className="rounded-lg overflow-hidden shadow-lg bg-white flex items-center p-5">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 custom-flash-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-                <div className="ml-5">
-                  <p className="font-bold text-lg lg:text-xl custom-card-h">Fast in use</p>
-                  <p className="text-sm lg:text-base custom-card-p">50% more productivity</p>
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-center items-center h-full">
-              <div className="w-12 h-12 bg-blue-500 rounded-full flex border bg-white/15 border-white/35 drop-shadow-2xl justify-center items-center" onClick={() => {
+          <div className="flex justify-center items-center gap-8 mt-6 mb-12">
+            {
+              info.map(({ id, icon, title, description }) => (
+                <>
+                  <Info_card key={id} id={id} icon={icon} title={title} description={description} />
+                </>              
+              ))
+            }
+          </div>
+          <div className="flex justify-center items-end h-[100px]">
+            <div className="flex justify-center items-center p-3 rounded-full border border-white/30"
+              onClick={() => {
                 infoRef.current.scrollIntoView({ behavior: 'smooth'});
               }}>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" className="w-6 h-6" href='#'>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-
-                </svg>
-              </div>
+              <Icon name='ChevronDown' color='#ffffff' />
             </div>
           </div>
         </div>
+        <div className='w-full h-[40px]'></div>
       </section>
       {/*h-[940px] zostalo zamienione na h-screen w sekcji info i contact*/}
       <section className="flex flex-col justify-center h-screen w-full gap-[96px] bg-[--Background-DarkMode] py-12" ref={infoRef}>
@@ -88,7 +56,7 @@ const Home = ({ infoRef, contactRef }) => {
           {
             questions.map(({ id, title, description }) => (
               <>
-                <Info_card key={id} id={id} title={title} description={description} />
+                <Question_card key={id} id={id} title={title} description={description} />
               </>
             ))
           }

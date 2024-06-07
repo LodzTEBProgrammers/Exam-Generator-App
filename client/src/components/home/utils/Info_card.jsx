@@ -1,4 +1,4 @@
-const Info_card = ({ id, title, description }) => {
+const Question_card = ({ id, title, description }) => {
   return (
     <>
       {id % 2 == 0 ? (
@@ -30,4 +30,4 @@ const Info_card = ({ id, title, description }) => {
   )
 }
 
-export default Info_card;
+export default Question_card;

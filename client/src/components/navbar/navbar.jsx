@@ -11,8 +11,8 @@ function Navbar({ infoRef, contactRef }) {
         ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
       };
     return (
-        <header className="header flex flex-wrap sm:justify-start sm:flex-nowrap z-50 lg:w-8/12 rounded-lg mx-auto mt-0 lg:mt-5 py-5 border border-white/20">
-            <nav className="relative w-full lg:w-12/12 px-4 lg:flex lg:items-center lg:justify-between">
+        <header className="fixed w-full h-[100px] flex items-center sm:justify-center sm:flex-nowrap z-50">
+            <nav className="header w-[1488px] h-[80px] flex flex-wrap rounded-[20px] border-[.5px] border-white/25 px-6 backdrop-blur-sm lg:w-12/12 lg:flex lg:items-center lg:justify-between">
                 <div className="flex items-center justify-between">
                     <a href="" className="leading-none">
                         <img src={Traily} alt="Logo Traily" />

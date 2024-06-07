@@ -9,9 +9,9 @@ function App() {
   return (
     <>
       <Navbar infoRef={infoRef} contactRef={contactRef} />
-      <main className="layout">
-        <Home  infoRef={infoRef} contactRef={contactRef}  />
-      </main>
+        <main className="layout">
+          <Home  infoRef={infoRef} contactRef={contactRef}  />
+        </main>
       <Footer infoRef={infoRef} />
     </>
   );
