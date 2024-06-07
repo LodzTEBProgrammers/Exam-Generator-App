@@ -14,10 +14,10 @@ const Home = ({ infoRef, contactRef }) => {
   return (
     <>
       <section className='hero relative z-10'>
-        <div className='flex flex-col justify-center items-center h-[880px]'>
+        <div className='flex flex-col justify-center items-center h-[920px]'>
           <div className='flex gap-12'>
             <div className='flex flex-col justify-center w-[660px] gap-6 lg:items-start lg:text-left'>
-              <h1 className='text-[3.5rem] leading-[4rem] font-bold text-white'>
+              <h1 className='text-[3.25rem] leading-[4rem] font-bold text-white'>
                 Traily is an innovative platform designed to simplify the process of exam creation and management
               </h1>
               <h3 className='font-medium text-[--TextSecond-DarkMode]'>
@@ -36,7 +36,7 @@ const Home = ({ infoRef, contactRef }) => {
             }
           </div>
           <div className="flex justify-center items-end h-[100px]">
-            <div className="flex justify-center items-center p-3 rounded-full border border-white/30"
+            <div className="flex justify-center items-center p-3 rounded-full border border-white/30 hover:cursor-pointer"
               onClick={() => {
                 infoRef.current.scrollIntoView({ behavior: 'smooth'});
               }}>
@@ -44,7 +44,6 @@ const Home = ({ infoRef, contactRef }) => {
             </div>
           </div>
         </div>
-        <div className='w-full h-[40px]'></div>
       </section>
       {/*h-[940px] zostalo zamienione na h-screen w sekcji info i contact*/}
       <section className="flex flex-col justify-center h-screen w-full gap-[96px] bg-[--Background-DarkMode] py-12" ref={infoRef}>

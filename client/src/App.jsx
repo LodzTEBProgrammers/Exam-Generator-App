@@ -10,7 +10,7 @@ function App() {
     <>
       <Navbar infoRef={infoRef} contactRef={contactRef} />
         <main className="layout">
-          <Home  infoRef={infoRef} contactRef={contactRef}  />
+          <Home infoRef={infoRef} contactRef={contactRef}  />
         </main>
       <Footer infoRef={infoRef} />
     </>

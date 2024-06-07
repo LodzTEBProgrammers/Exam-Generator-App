@@ -27,32 +27,40 @@ function Navbar({ infoRef, contactRef }) {
                         </label>
                     </div>
                 </div>
-                <ul className="hidden lg:relative lg:flex lg:ml-auto lg:items-center lg:w-auto lg:space-x-4">
+                <ul className="hidden text-white font-medium lg:relative lg:flex lg:items-center lg:gap-6 lg:px-2">
                     <li>
-                        <a className="nav-link relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left ::hover cursor-pointer " href="#">
-                            Home
-                        </a>
+                        <p className="text-base">
+                            <a className="nav-link relative w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left ::hover cursor-pointer " href="#">
+                                Home
+                            </a>
+                        </p>
                     </li>
                     <li>
-                        <a className="nav-link relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left ::hover cursor-pointer " onClick={() => handleScroll(infoRef)} >
-                            How it works
-                        </a>
+                        <p className="text-base">
+                            <a className="nav-link relative w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left ::hover cursor-pointer " onClick={() => handleScroll(infoRef)}>
+                                How it works?
+                            </a>
+                        </p>
                     </li>
                     <li>
-                        <a className="nav-link relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left ::hover cursor-pointer " onClick={() => handleScroll(contactRef)} >
-                            Contact
-                        </a>
+                        <p className="text-base">
+                            <a className="nav-link relative w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left ::hover cursor-pointer " onClick={() => handleScroll(contactRef)}>
+                                Contact
+                            </a>
+                        </p>
                     </li>
                     <li>
-                        <a className="nav-link  relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left ::hover cursor-pointer " href="#">
-                            FAQ
-                        </a>
+                        <p className="text-base">
+                            <a className="nav-link relative w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left ::hover cursor-pointer " href="#">
+                                FAQ
+                            </a>
+                        </p>
                     </li>
                     <li>
-                        <a className="btn hidden lg:inline-block py-2 px-7 rounded-lg items-center" href="#">Panel</a>
+                        <a className="hidden lg:inline-block px-6 py-2 rounded-2xl bg-[--Primary-DarkMode]" href="#">Panel</a>
                     </li>
                 </ul>
-                <ul className={`lg:hidden mobile-menu ${isMobileMenuOpen ? '' : 'hidden'}`}>
+                {/* <ul className={`lg:hidden mobile-menu ${isMobileMenuOpen ? '' : 'hidden'}`}>
                     <li>
                         <a className="nav-link mt-3 mb-3 relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left" href="#">
                             Home
@@ -76,7 +84,7 @@ function Navbar({ infoRef, contactRef }) {
                     <li>
                         <a className="btn w-full text-center inline-block py-2 px-7 rounded-lg items-center" href="#">Panel</a>
                     </li>
-                </ul>
+                </ul> */}
             </nav>
         </header>
     );
