@@ -1,69 +1,124 @@
-import { Paths } from "./Paths.js";
-import fs, { readFile } from "fs";
-import { ActionsTypes } from "./coreType.js";
-import path, { parse } from "path";
+import { pool } from "../mySqlDb/db/db.js";
 
-
-/*
-Co ma znajdować się w Core aplikacji:
-- ma to być dynamiczne
-- Stworzyć metode odczytującą dane z jsona i przypisującą do zmiennej
-- Stworzyć metode zapisującą dane do jsona, gdzie typ byłby automatycznie wykrywany
-*/
-const paths = new Paths();
-export default class Core extends Paths {
+export default class Core {
     constructor() {
-        super();
+        this.pool = pool;
     }
-    static saveJson(path,exams){
-        try{
-            if (path !== null && exams !== null) {
-                fs.writeFileSync(path.trim(),JSON.stringify(exams));
-            } else {
-                throw new Error("Error in given parameters")
-            }
-        } catch(er){
-            console.log("Error reading JSON:", er);
-            
+    static async ExecuteQuery(query,type){
+        switch(type){
+            case "POST":
+                // do napisania
+                break;
+            case "GET":
+                const [rows] = await pool.query(query);
+                return rows;
+                break;
         }
     }
-    static readJson = (type) =>{
-        try {
-            const filePath = paths.getPathExams(type);
-            const file = fs.readFileSync(filePath, 'utf-8'); // Dodaj kodowanie 'utf-8'
-            console.log("File before parse: " + file)
-            const parsedFile = JSON.parse(file);
-            console.log("File parsed:", parsedFile); // Debugowanie zawartości pliku
-            return JSON.parse(file); // Zwraca sparsowany plik
-        } catch(err) {
-            console.log("Error reading JSON:", err);
+    static async getAllTasks() {
+        const [rows] = await pool.query("SELECT * FROM tasks");
+        return rows;
+    }
+
+    static async getAllExams() {
+        const [rows] = await pool.query(`
+            SELECT e.id as exam_id, e.name as exam_name, e.dateFrom, e.dateTo, e.user_id,
+                   t.id as task_id, t.name as task_name, t.a, t.b, t.c, t.trueAnswer
+            FROM examsonline e
+            LEFT JOIN exam_tasks et ON e.id = et.exam_id
+            LEFT JOIN tasks t ON et.task_id = t.id
+        `);
+
+        const examsMap = new Map();
+        rows.forEach(row => {
+            if (!examsMap.has(row.exam_id)) {
+                examsMap.set(row.exam_id, {
+                    id: row.exam_id,
+                    name: row.exam_name,
+                    dateFrom: row.dateFrom,
+                    dateTo: row.dateTo,
+                    user_id: row.user_id,
+                    tasks: []
+                });
+            }
+            if (row.task_id) {
+                examsMap.get(row.exam_id).tasks.push({
+                    id: row.task_id,
+                    name: row.task_name,
+                    a: row.a,
+                    b: row.b,
+                    c: row.c,
+                    trueAnswer: row.trueAnswer
+                });
+            }
+        });
+
+        return Array.from(examsMap.values());
+    }
+
+    static async getExamById(id) {
+        const [rows] = await pool.query("SELECT * FROM examsonline WHERE id = ?", [id]);
+        return rows[0];
+    }
+    static async getExamWithTasksById(id) {
+        const [rows] = await pool.query(`
+            SELECT e.id as exam_id, e.name as exam_name, e.dateFrom, e.dateTo, e.user_id,
+                   t.id as task_id, t.name as task_name, t.a, t.b, t.c, t.trueAnswer
+            FROM examsonline e
+            LEFT JOIN exam_tasks et ON e.id = et.exam_id
+            LEFT JOIN tasks t ON et.task_id = t.id
+            WHERE e.id = ?
+        `, [id]);
+
+        if (rows.length === 0) {
             return null;
         }
+
+        const exam = {
+            id: rows[0].exam_id,
+            name: rows[0].exam_name,
+            dateFrom: rows[0].dateFrom,
+            dateTo: rows[0].dateTo,
+            user_id: rows[0].user_id,
+            tasks: rows.filter(row => row.task_id !== null).map(row => ({
+                id: row.task_id,
+                name: row.task_name,
+                a: row.a,
+                b: row.b,
+                c: row.c,
+                trueAnswer: row.trueAnswer
+            }))
+        };
+
+        return exam;
+    }
+    static async createExam(exam) {
+        const { name, dateFrom, dateTo, user_id } = exam;
+        const [result] = await pool.query(
+            "INSERT INTO examsonline (name, dateFrom, dateTo, user_id) VALUES (?, ?, ?, ?)",
+            [name, dateFrom, dateTo, user_id]
+        );
+        return result.insertId;
     }
 
-    static readAndSaveJson = (type, newExam) =>{
-        try {
-            const file = Core.readJson(type);
-            if (file === null) {
-                throw new Error("Failed to read JSON file");
-            }
-            file.push(newExam);
-            const filePath = paths.getPathExams(type);
-            fs.writeFileSync(filePath, JSON.stringify(file, null, 2));
-            return file;
-        } catch (err) {
-            console.log("Error saving data to JSON: " + err);
-        }
+    static async updateExam(id, exam) {
+        const { name, dateFrom, dateTo, user_id } = exam;
+        await pool.query(
+            "UPDATE examsonline SET name = ?, dateFrom = ?, dateTo = ?, user_id = ? WHERE id = ?",
+            [name, dateFrom, dateTo, user_id, id]
+        );
     }
 
-    static removeTaskById = (type, id) =>{
-        try {
-            const filePath = paths.getPathExams(type);
-            const file = fs.readFileSync(filePath, 'utf-8');
-            if (file === null) throw new Error("Failed to read JSON file");
-            
-        } catch (err) {
-            
-        }
+    static async deleteExam(id) {
+        await pool.query("DELETE FROM examsonline WHERE id = ?", [id]);
+    }
+
+    static async getExamsByUser(userId) {
+        const [rows] = await pool.query("SELECT * FROM examsonline WHERE user_id = ?", [userId]);
+        return rows;
+    }
+
+    static async addTaskToExam(examId, taskId) {
+        await pool.query("INSERT INTO exam_tasks (exam_id, task_id) VALUES (?, ?)", [examId, taskId]);
     }
 }
