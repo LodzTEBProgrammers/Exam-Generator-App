@@ -9,7 +9,7 @@ const Question_card = ({ id, title, description }) => {
             </h2>
           </div>
           <div className="flex flex-col gap-2 text-right">
-            <h4 className="font-semibold text-[--Text-DarkMode]">{title}</h4>
+            <h4 className="text-[20px] lg:text-[24px] font-semibold text-[--Text-DarkMode]">{title}</h4>
             <p className="text-[--TextSecond-DarkMode]">{description}</p>
           </div>
         </div>
@@ -21,7 +21,7 @@ const Question_card = ({ id, title, description }) => {
             </h2>
           </div>
           <div className="flex flex-col gap-2">
-            <h4 className="font-semibold text-[--Text-DarkMode]">{title}</h4>
+            <h4 className="text-[20px] lg:text-[24px] font-semibold text-[--Text-DarkMode]">{title}</h4>
             <p className="text-[--TextSecond-DarkMode]">{description}</p>
           </div>
         </div>
