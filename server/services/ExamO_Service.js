@@ -1,4 +1,3 @@
-
-export default class ExamO_Service{
+export default class ExamO_Service {
 
 }

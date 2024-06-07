@@ -3,7 +3,9 @@ import { pool } from "../mySqlDb/db/db.js";
 export default class Core {
     constructor() {
         this.pool = pool;
+        this.services = new Map()
     }
+
     static async ExecuteQuery(query,type){
         switch(type){
             case "POST":
@@ -12,8 +14,10 @@ export default class Core {
             case "GET":
                 const [rows] = await pool.query(query);
                 return rows;
-                break;
         }
+    }
+    static loadServices(){
+
     }
     static async getAllTasks() {
         const [rows] = await pool.query("SELECT * FROM tasks");
@@ -60,6 +64,7 @@ export default class Core {
         const [rows] = await pool.query("SELECT * FROM examsonline WHERE id = ?", [id]);
         return rows[0];
     }
+
     static async getExamWithTasksById(id) {
         const [rows] = await pool.query(`
             SELECT e.id as exam_id, e.name as exam_name, e.dateFrom, e.dateTo, e.user_id,
@@ -92,6 +97,7 @@ export default class Core {
 
         return exam;
     }
+
     static async createExam(exam) {
         const { name, dateFrom, dateTo, user_id } = exam;
         const [result] = await pool.query(
