@@ -9,7 +9,9 @@ export const resolveByExamId = async (req, res, next) => {
     }
 
     try {
-        const exam = await Core.getExamWithTasksById(parsedId);
+        const service = Core.getService("ExamO_Service");
+
+        const exam = await service.getExamWithTasksById(parsedId);
         if (!exam) {
             return next(new AppError("Exam not found", 404))
           
@@ -30,7 +32,9 @@ export const patchExamByIdMiddle = async (req, res, next) => {
     }
 
     try {
-        const exam = await Core.getExamById(parsedId);
+        const service = Core.getService("ExamO_Service");
+
+        const exam = await service.getExamById(parsedId);
         if (!exam) {
             return res.status(404).send("Exam not found");
         }
@@ -51,7 +55,9 @@ export const deleteExamByIdMiddle = async (req, res, next) => {
     }
 
     try {
-        const exam = await Core.getExamById(parsedId);
+        const service = Core.getService("ExamO_Service");
+
+        const exam = await service.getExamById(parsedId);
         if (!exam) {
             return next(new AppError("Exam not found",404));        
         }

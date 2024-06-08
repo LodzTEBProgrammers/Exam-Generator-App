@@ -3,16 +3,23 @@ import { validationResult } from 'express-validator';
 
 const getExams = async (req, res) => {
     try {
-        const exams = await Core.getAllExams();
-        res.status(200).json({ data: exams });
+      const service = Core.getService("ExamO_Service");
+     
+   
+      const exams = await service.getAllExams();
+      res.status(200).json({ data: exams });
     } catch (err) {
-        res.status(500).json({ error: "Failed to fetch exams" });
+      res.status(500).json({ error: "Failed to fetch exams" });
     }
-};
+  };
+  
 const getExamById = async (req, res) => {
     const { id } = req.params;
+
     try {
-        const exam = await Core.getExamWithTasksById(id);
+        const service = Core.getService("ExamO_Service");
+
+        const exam = await service.getExamWithTasksById(id);
         if (!exam) {
             return res.status(404).json({ error: "Exam not found" });
         }
@@ -24,8 +31,11 @@ const getExamById = async (req, res) => {
 
 const getExamByUser = async (req, res) => {
     const { user } = req.params;
+
     try {
-        const exams = await Core.getExamsByUser(user);
+        const service = Core.getService("ExamO_Service");
+
+        const exams = await service.getExamsByUser(user);
         if (!exams.length) {
             return res.status(404).json({ error: "No exams found for the user" });
         }
@@ -44,7 +54,7 @@ const createExam = async (req, res) => {
     }
 
     try {
-        const examId = await Core.createExam(body);
+        const examId = await service.createExam(body);
         res.status(200).send({ id: examId, ...body });
     } catch (err) {
         res.status(500).send({ error: "Failed to create exam" });
@@ -61,7 +71,9 @@ const patchExamById = async (req, res) => {
     }
 
     try {
-        await Core.updateExam(id, body);
+        const service = Core.getService("ExamO_Service");
+
+        await service.updateExam(id, body);
         res.status(200).send(body);
     } catch (err) {
         res.status(500).send({ error: "Failed to update exam" });
@@ -71,7 +83,10 @@ const patchExamById = async (req, res) => {
 const deleteExamById = async (req, res) => {
     const { id } = req.params;
     try {
-        await Core.deleteExam(id);
+
+        const service = Core.getService("ExamO_Service");
+
+        await service.deleteExam(id);
         res.status(200).send("Exam was successfully deleted");
     } catch (err) {
         res.status(500).send({ error: "Failed to delete exam" });
