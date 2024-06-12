@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 import Core from './core/Core.js';
 
 dotenv.config();
-
 const port = process.env.PORT_GLOBAL || 5005;
 
 app.listen(port, async () => {
