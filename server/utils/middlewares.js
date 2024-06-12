@@ -90,7 +90,12 @@ export const Verify = async (req, res, next) => {
   
       if (!authHeader) return res.sendStatus(401); // if there is no cookie from request header, send an unauthorized response.
       const cookie = authHeader.split("=")[1]; // If there is, split the cookie string to get the actual jwt
-  
+      const accessToken = cookie.split(";")[0];
+      const checkIfBlacklisted = await service.FindOneBlackist(accessToken); // Check if that token is blacklisted
+      if (checkIfBlacklisted)
+        return res
+            .status(401)
+            .json({ message: "This session has expired. Please login" });
       // Verify using jwt to see if token has been tampered with or if it has expired.
       // that's like checking the integrity of the cookie
       jwt.verify(cookie, process.env.SECRET_ACCESS_TOKEN, async (err, decoded) => {

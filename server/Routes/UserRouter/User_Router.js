@@ -9,7 +9,7 @@ import { Controllers } from "./Controllers/controllers.js";
 import { Validate, Verify } from "../../utils/middlewares.js";
 
 const userRouter = express.Router();
-const { Register,Login } = Controllers;
+const { Register,Login,Logout } = Controllers;
 userRouter.post(
   `/register`,
   check("email")
@@ -54,4 +54,5 @@ userRouter.get("/user", Verify, (req, res) => {
       message: "Welcome to the your Dashboard!",
   });
 });
+userRouter.get('/logout', Logout);
 export default userRouter;

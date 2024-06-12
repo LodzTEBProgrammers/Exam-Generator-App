@@ -14,10 +14,7 @@ const getExams = async (req, res) => {
     }
   };
   
-  const test = (req,res)=>{
-    const service = Core.getService("ExamO_Service");
-    
-  }
+
 const getExamById = async (req, res) => {
     const { id } = req.params;
 
