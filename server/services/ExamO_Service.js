@@ -13,7 +13,9 @@ class ExamO_Service{
           throw error;
         }
       }
-    
+      async test(){
+        return "test"
+      }
        async getAllExams() {
         try {
           const [rows] = await pool.query(`

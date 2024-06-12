@@ -3,7 +3,7 @@ import { checkSchema } from 'express-validator';
 import { examSchema } from '../../schemas/checkExamQuery.js';
 import { patchExamByIdMiddle, resolveByExamId, deleteExamByIdMiddle } from '../../utils/middlewares.js';
 import { Controllers } from './Controllers/controllers.js';
-import data from './constants.js'
+import data from '../constants.js'
 const { getExams, getExamById, getExamByUser, patchExamById, deleteExamById, createExam } = Controllers;
 const examOnlineRouter = express.Router();
 

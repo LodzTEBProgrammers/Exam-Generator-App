@@ -4,8 +4,9 @@ import { validationResult } from 'express-validator';
 const getExams = async (req, res) => {
     try {
       const service = Core.getService("ExamO_Service");
-     
-   
+      if(req.headers.cookie.hello){
+        console.log("cookie exists")
+      }
       const exams = await service.getAllExams();
       res.status(200).json({ data: exams });
     } catch (err) {
@@ -13,6 +14,10 @@ const getExams = async (req, res) => {
     }
   };
   
+  const test = (req,res)=>{
+    const service = Core.getService("ExamO_Service");
+    
+  }
 const getExamById = async (req, res) => {
     const { id } = req.params;
 
