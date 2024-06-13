@@ -145,13 +145,9 @@ class UserService {
       const cookieParts = authHeader.split(';').find(c => c.trim().startsWith('SessionID='));
       const accessToken = cookieParts.split('=')[1];
 
-
-      if (!authHeader || !cookieParts || !accessToken) return res.sendStatus(204); 
- 
-      if (!cookieParts) return res.sendStatus(204); 
-  
-      if (!accessToken) return res.sendStatus(204); 
-  
+      if (!authHeader || !cookieParts || !accessToken) return res.sendStatus(204);
+      // TODO 
+      // USUWANIE TOKENA JESLI ISTNIEJE 
       const checkIfBlacklisted = await this.FindOneBlackist(accessToken);
       if (checkIfBlacklisted) return res.sendStatus(204); 
       const newBlacklist = {
