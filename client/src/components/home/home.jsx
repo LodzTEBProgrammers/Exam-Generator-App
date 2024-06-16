@@ -13,20 +13,20 @@ const Home = ({ infoRef, contactRef }) => {
 
   return (
     <>
-      <section className='hero  relative z-10 flex justify-center items-start h-full  mt-4 mb-11 lg:mt-0 '>
-        <div className='container flex flex-col lg:flex-row lg:w-8/12 lg:h-2/3 flex-wrap justify-center mx-auto'>
-          <div className='grid grid-flow-col auto-cols-2 px-5  lg:px-0'>
+      <section className='hero relative z-10 flex justify-center items-start h-full mt-24 mb-11'>
+        <div className='container flex flex-col lg:w-8/12 justify-center mx-auto'>
+          <div className='grid grid-flow-col auto-cols-2 px-5 lg:px-0'>
             <div className='flex flex-col justify-center lg:items-start lg:text-left lg:w-4/7 my-10'>
-              <h1 className='text-[25px] lg:text-[28px] xl:text-[36px] leading-snug'>
+              <h1 className='text-[25px] lg:text-[28px] xl:text-[36px] text-[--Text-DarkMode] leading-snug font-bold'>
                 Traily is an innovative platform designed to simplify the process of exam creation and management
               </h1>
-              <h3 className='font-medium text-[--TextSecond-DarkMode]'>
+              <h3 className='text-[18px] lg:text-[22px] xl:text-[30px] font-medium text-[--TextSecond-DarkMode]'>
                 We are the best option for you!
               </h3>
             </div>
-            <img src={HeroImage} alt="Hero Obraz" className="max-w-full h-auto" />
+            <img src={HeroImage} alt="Hero Obraz" className="max-w-full h-auto hidden md:block" />
           </div>
-          <div className="flex justify-center items-center gap-8 mt-6 mb-12">
+          <div className="flex justify-center items-center flex-wrap xl:flex-nowrap gap-8 mb-12">
             {
               info.map(({ id, icon, title, description }) => (
                 <>
@@ -35,7 +35,7 @@ const Home = ({ infoRef, contactRef }) => {
               ))
             }
           </div>
-          <div className="flex justify-center items-end h-[100px]">
+          <div className="flex justify-center items-center">
             <div className="flex justify-center items-center p-3 rounded-full border border-white/30"
               onClick={() => {
                 infoRef.current.scrollIntoView({ behavior: 'smooth'});
