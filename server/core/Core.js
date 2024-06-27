@@ -18,7 +18,7 @@ class Core {
       const servicePath = pathToFileURL(path.join(servicesDir, file)).href;
       const service = await import(servicePath);
 
-      this.services[serviceName] = service;
+      this.services[serviceName] = service.default;
       console.log(`${serviceName} loaded successfully!`);
     }
   }
