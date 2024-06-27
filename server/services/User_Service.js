@@ -25,7 +25,7 @@ class UserService {
          next(new AppError('User object or password is undefined'));
       }
 
-      const salt = await bcrypt.genSalt(10);
+      const salt = await bcrypt.genSalt(12);
       user.password = await bcrypt.hash(user.password, salt);
 
       const [result] = await pool.query(
@@ -54,6 +54,17 @@ class UserService {
           status: "failed",
           data: [],
           message: "It seems you already have an account, please log in instead.",
+        });
+      }
+
+      const emailRegex = /^[^@\s]+@teb.edu.pl$/;
+      const isValid = emailRegex.test(email);
+
+      if(!isValid){
+        return res.status(400).json({
+          status: "failed",
+          data: [],
+          message: "Invalid email",
         });
       }
 
@@ -103,6 +114,7 @@ class UserService {
         secure: true,
         sameSite: "None",
       };
+      
       const token = this.generateAccessJWT(existingUser.id); 
       res.cookie("SessionID", token, options); 
       res.status(200).json({
@@ -113,32 +125,58 @@ class UserService {
       next(new AppError(err,404));
     }
   }
-  async Logout(req, res) {
+
+  async FindOneBlackist(token){
+    const [rows] = await pool.query('SELECT * FROM blacklist WHERE token = ?', [token]);
+    return rows.length ? rows[0] : null;
+  }
+
+  async saveBlacklist(newBlacklist) {
+    if (!newBlacklist) {
+      return new AppError("Blacklist was not passed");
+    }
+
+    const [result] = await pool.query(
+      'INSERT INTO blacklist (token, date) VALUES (?, ?)',
+      [newBlacklist.token, newBlacklist.date]
+    );
+    return result;
+  }
+  async logout(req, res) {
     try {
-      const authHeader = req.headers['cookie']; // get the session cookie from request header
-      if (!authHeader) return res.sendStatus(204); // No content
-      const cookie = authHeader.split('=')[1]; // If there is, split the cookie string to get the actual jwt token
-      const accessToken = cookie.split(';')[0];
-      const checkIfBlacklisted = await Blacklist.findOne({ token: accessToken }); // Check if that token is blacklisted
-      // if true, send a no content response.
+      const authHeader = req.headers['cookie']; 
+      const cookieParts = authHeader.split(';').find(c => c.trim().startsWith('SessionID='));
+      const accessToken = cookieParts.split('=')[1];
+
+      if (!authHeader || !cookieParts || !accessToken) return res.sendStatus(204);
+      // TODO 
+      // USUWANIE TOKENA JESLI ISTNIEJE
+
+      const checkIfBlacklisted = await this.FindOneBlackist(accessToken);
       if (checkIfBlacklisted) return res.sendStatus(204);
-      // otherwise blacklist token
-      const newBlacklist = new Blacklist({
+
+      const newBlacklist = {
         token: accessToken,
+        date: new Date()
+      };
+      await this.saveBlacklist(newBlacklist);
+
+      res.clearCookie('SessionID', {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'None'
       });
-      await newBlacklist.save();
-      // Also clear request cookie on client
-      res.setHeader('Clear-Site-Data', '"cookies"');
+
       res.status(200).json({ message: 'You are logged out!' });
     } catch (err) {
+      console.error(err);
       res.status(500).json({
         status: 'error',
         message: 'Internal Server Error',
       });
     }
-    res.end();
   }
-  
+
 }
 
 export default new UserService();
