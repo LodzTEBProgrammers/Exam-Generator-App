@@ -55,6 +55,7 @@ function Navbar({ infoRef, contactRef }) {
                 <ul className={`lg:hidden mobile-menu ${isMobileMenuOpen ? '' : 'hidden'}`}>
                     <li>
                         <a className="nav-link mt-3 mb-3 relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left" href="#">
+                            
                             Home
                         </a>
                     </li>

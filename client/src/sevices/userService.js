@@ -1,16 +1,65 @@
-// do napisania serwis z akcjami API na użytkownikach
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { useNavigate } from "react-router-dom";
 
+// Funkcja pomocnicza do przygotowania nagłówków
+const prepareHeaders = (headers, { getState }) => {
+  // Pobieranie tokenu JWT z reduxa lub lokalnego stanu
+  const token = getState().auth.token;
+  if (token) {
+    headers.set('Authorization', `Bearer ${token}`);
+  }
+  return headers;
+};
 
-// Jeżeli bedziemy chcieć użyjemy redux tooklita do napisania serwisów
-const register = async () =>{
+// Obsługa błędów
+const baseQueryWithReauth = async (args, api, extraOptions) => {
+  let result = await fetchBaseQuery({
+    baseUrl: "https://localhost:5000",
+    prepareHeaders,
+  })(args, api, extraOptions);
 
-}
-const login = async () =>{
+  if (result.error && result.error.status === 401) {
+    // Obsługa odświeżania tokenu lub przekierowanie do logowania
+    // Tu możesz zaimplementować mechanizm odświeżania tokenu
+    // lub przekierowanie użytkownika do strony logowania
+    
+  }
+  const navigate = useNavigate()
 
-}
+  return result;
+};
 
+// API slice with user actions
+export const apiSlice = createApi({
+  reducerPath: "api",
+  baseQuery: baseQueryWithReauth,
+  endpoints: (builder) => ({
+    getUser: builder.query({
+      query: (id) => `/user:${id}`,
+    }),
+    login: builder.mutation({
+      query: (data) => ({
+        url: "/login",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    register: builder.mutation({
+      query: (data) => ({
+        url: "/register",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    logout: builder.query({
+      query: () => "/logout",
+    }),
+  }),
+});
 
-export const userServie = {
-register,
-login
-}
+export const {
+  useGetUserQuery,
+  useLoginMutation,
+  useRegisterMutation,
+  useLazyLogoutQuery,
+} = apiSlice;
