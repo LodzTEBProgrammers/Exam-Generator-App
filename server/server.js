@@ -1,16 +1,16 @@
-import express from 'express'
-import cors from 'cors';
-import examOnlineRouter from './Routes/ExamOnlineRouter/ExamO_Router.js';
-import bodyParser from 'body-parser';
-const app = new express();
+import app from './app.js';
+import dotenv from 'dotenv';
+import Core from './core/Core.js';
 
-app.use(cors())
-app.use(express.json())
-app.use(bodyParser.json())
-app.use(examOnlineRouter);
+dotenv.config();
 
+const port = process.env.PORT_GLOBAL || 5005;
 
-
-app.listen(process.env.PORT || 5000, () => {
-    console.log("connected");
+app.listen(port, async () => {
+  try {
+    await Core.loadServices();
+    console.log("Server is running on port " + port);
+  } catch (error) {
+    console.error("Error starting server:", error);
+  }
 });
