@@ -21,7 +21,7 @@ class Core {
         this.services[serviceName] = service.default;
         console.log(`${serviceName} loaded successfully`);
       }
-  }
+    }
   }
   getService(serviceName) {
     return this.services[serviceName];
@@ -29,3 +29,16 @@ class Core {
 }
 
 export default new Core();
+
+export class Core{
+    constructor() {
+        this.PathExams = ""; 
+        this.exams;
+    }
+    get getPaths(){
+       return this.PathExams ='./data/examModelOnline.json'; 
+    }
+    get getExams(){
+        const exams = JSON.parse(fs.readFileSync(this.PathExams));
+    }
+}

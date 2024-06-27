@@ -1,9 +1,10 @@
 import Core from "../core/Core.js";
 import { pool } from "../mySqlDb/db/db.js";
-class ExamO_Service{
-      constructor(){
+class ExamO_Service {
+      constructor() {
         this.name = "ExamO_Service"
       }
+  
      async getAllTasks() {
         try {
           const [rows] = await pool.query("SELECT * FROM tasks");
@@ -13,6 +14,7 @@ class ExamO_Service{
           throw error;
         }
       }
+  
       async test(){
         return "test"
       }
@@ -63,6 +65,7 @@ class ExamO_Service{
         const [rows] = await pool.query("SELECT * FROM examsonline WHERE id = ?", [id]);
         return rows[0];
     }
+export default class ExamO_Service extends Core {
 
      async getExamWithTasksById(id) {
         const [rows] = await pool.query(`
