@@ -1,11 +1,11 @@
-const examsFile = [
+export const exams = [
     {
         "id": 1,
         "name": "Maths",
         "date": "date",
         "dateFrom": "",
         "dateTo": "",
-        "user": "John", 
+        "user":null, 
         "tasks": [ 
         {
             "id": 1,
@@ -13,44 +13,17 @@ const examsFile = [
             "a": "Washington",
             "b": "Warsaw",
             "c": "New York",
-            "trueAnswer": 1
-        },
-        {
-            "id": 2,
-            "name": "Capital of United States",
-            "a": "Washington",
-            "b": "Warsaw",
-            "c": "New York",
-            "trueAnswer": 3
-        }
-        ]
-    },
-    {
-        "id": 2,
-        "name": "Biology",
-        "date": "date",
-        "dateFrom": "",
-        "dateTo": "",
-        "user": "Ann", 
-        "tasks": [ 
-        {
-            "id": 1,
-            "name": "Capital of United States",
-            "a": "Washington",
-            "b": "Warsaw",
-            "c": "New York",
-            "trueAnswer": 1
-        },
-        {
-            "id": 2,
-            "name": "Capital of United States",
-            "a": "Washington",
-            "b": "Warsaw",
-            "c": "New York",
-            "trueAnswer": 3
-        }
-        ]
-    }
-];
+            "trueAnswer":1
 
-export default examsFile;
+        },
+        {
+            "id": 2,
+            "name": "Capital of United States",
+            "a": "Washington",
+            "b": "Warsaw",
+            "c": "New York",
+            "trueAnswer":3
+        }
+        ]
+    } 
+]

@@ -1,5 +1,4 @@
-const examOnline = "ExamOnline";
-const examPaper = "ExamPaper";
+
 
 
 
