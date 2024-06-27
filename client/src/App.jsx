@@ -1,33 +1,30 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Footer from "./components/footer/footer";
 import Home from "./components/home/home";
-import Login from './components/login/login'
+import Login from "./components/login/login";
 import Navbar from "./components/navbar/navbar";
-import { useRef } from "react";
-// Znalazłem konflikt przez który nie da się dać routera w osobnym pliku. Idk dlaczego tak sie dzieje 
-
+import useCustomRefs from "./CustomRefs.jsx";
 
 function App() {
-  const infoRef = useRef(null);
-  const contactRef = useRef(null);
+  const refs = useCustomRefs();
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Home infoRef={infoRef} contactRef={contactRef}/>,
+      element: <Home infoRef={refs.infoRef} contactRef={refs.contactRef}/>,
     },
     {
       path: '/login',
       element: <Login />,
     }
   ]);
+
   return (
     <>
-      <Navbar infoRef={infoRef} contactRef={contactRef} />
-
+      <Navbar infoRef={refs.infoRef} contactRef={refs.contactRef} />
         <main className="layout">
-        <RouterProvider router={router}/>
+          <RouterProvider router={router}/>
         </main>
-      <Footer infoRef={infoRef} />
+      <Footer />
     </>
   );
 }
