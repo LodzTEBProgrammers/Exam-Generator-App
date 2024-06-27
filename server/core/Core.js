@@ -18,31 +18,16 @@ class Core {
         const serviceName = file.split('.')[0];
         const servicePath = pathToFileURL(path.join(servicesDir, file)).href;
         const service = await import(servicePath);
+        
         this.services[serviceName] = service.default;
         console.log(`${serviceName} loaded successfully`);
       }
     }
   }
+
   getService(serviceName) {
     return this.services[serviceName];
   }
 }
 
-<<<<<<< HEAD
 export default new Core();
-=======
-export default new Core();
-
-export class Core{
-    constructor() {
-        this.PathExams = ""; 
-        this.exams;
-    }
-    get getPaths(){
-       return this.PathExams ='./data/examModelOnline.json'; 
-    }
-    get getExams(){
-        const exams = JSON.parse(fs.readFileSync(this.PathExams));
-    }
-}
->>>>>>> b3c189cc043ce8f6265472c15c403f381fdd4e00

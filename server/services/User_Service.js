@@ -14,6 +14,7 @@ class UserService {
     const payload = {
       id: userId,
     };
+
     return jwt.sign(payload, process.env.SECRET_ACCESS_TOKEN, {
       expiresIn: '20m',
     });
@@ -113,6 +114,7 @@ class UserService {
         secure: true,
         sameSite: "None",
       };
+      
       const token = this.generateAccessJWT(existingUser.id); 
       res.cookie("SessionID", token, options); 
       res.status(200).json({
@@ -147,9 +149,11 @@ class UserService {
 
       if (!authHeader || !cookieParts || !accessToken) return res.sendStatus(204);
       // TODO 
-      // USUWANIE TOKENA JESLI ISTNIEJE 
+      // USUWANIE TOKENA JESLI ISTNIEJE
+
       const checkIfBlacklisted = await this.FindOneBlackist(accessToken);
-      if (checkIfBlacklisted) return res.sendStatus(204); 
+      if (checkIfBlacklisted) return res.sendStatus(204);
+
       const newBlacklist = {
         token: accessToken,
         date: new Date()
@@ -171,8 +175,6 @@ class UserService {
       });
     }
   }
-  
-  
 }
 
 export default new UserService();
