@@ -56,6 +56,8 @@ const createExam = async (req, res) => {
     }
 
     try {
+        const service = Core.getService("ExamO_Service");
+
         const examId = await service.createExam(body);
         res.status(200).send({ id: examId, ...body });
     } catch (err) {
