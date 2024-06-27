@@ -30,7 +30,7 @@ class UserService {
       user.password = await bcrypt.hash(user.password, salt);
 
       const [result] = await pool.query(
-        'INSERT INTO users (email, password, first_name, last_name) VALUES (?, ?, ?, ?)',
+        'INSERT INTO users (email, password, first_name, last_name,role) VALUES (?, ?, ?, ?,"0x01")',
         [user.email, user.password, user.first_name, user.last_name]
       );
 
@@ -150,7 +150,7 @@ class UserService {
       if (!authHeader || !cookieParts || !accessToken) return res.sendStatus(204);
       // TODO 
       // USUWANIE TOKENA JESLI ISTNIEJE
-
+      
       const checkIfBlacklisted = await this.FindOneBlackist(accessToken);
       if (checkIfBlacklisted) return res.sendStatus(204);
 
