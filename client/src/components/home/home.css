@@ -8,13 +8,8 @@
 
 /*Obliczanie długości i szerokości hero dla Quad HD*/
 
-<<<<<<< HEAD
-/* .hero h1 {
-    font-size: var(--h-2);
-=======
 
 .hero h1 {
->>>>>>> f8a78b363da34c983759cf0e3e5c2f897e2a433a
     color: var(--Text-DarkMode);
     font-weight: bold;
     margin-bottom: var(--s-2);
@@ -132,7 +127,7 @@
     color: var(--TextSecond-DarkMode);
     outline: none;
 }
-
+test
 .contact-box textarea::placeholder {
     font-size: var(--p-1);
     opacity: 0.5;
