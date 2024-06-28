@@ -1,7 +1,7 @@
 import "./navbar.css";
 import { useState } from "react";
 import Traily from "../../assets/imgs/Traily Logo.png";
-
+import { Link } from "react-router-dom";
 function Navbar({ infoRef, contactRef }) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const toggleMobileMenu = () => {
@@ -49,7 +49,9 @@ function Navbar({ infoRef, contactRef }) {
                         </a>
                     </li>
                     <li>
-                        <a className="btn hidden lg:inline-block py-2 px-7 rounded-lg items-center" href="#">Panel</a>
+                        <a className="btn hidden lg:inline-block py-2 px-7 rounded-lg items-center" href="#">
+                        Panel
+                        </a>
                     </li>
                 </ul>
                 <ul className={`lg:hidden mobile-menu ${isMobileMenuOpen ? '' : 'hidden'}`}>
