@@ -1,4 +1,23 @@
+import { useRef, useState } from "react"
+import { useLoginMutation } from "../../sevices/userService";
+
 const Login = () => {
+  const [data,setData] = useState({
+    email:"",
+    password:""
+  });
+  const [login, { isLoading }] = useLoginMutation(data)
+
+  const handleSubmit = async () => {
+   try{
+    await login(data).unwrap();
+   }catch(e){
+    console.log(e);
+   }
+  }
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
   return (
     <section className='contact relative z-10 flex justify-center items-center h-screen mt-4 mb-11 lg:mt-0'>
         <div className="container w-full max-w-md">
@@ -8,16 +27,16 @@ const Login = () => {
                 <label className="block text-md" htmlFor="email">
                   Your email:
                 </label>
-                <input className="shadow appearance-none border rounded-full border-black/30 w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" />
+                <input className="shadow appearance-none border rounded-full border-black/30 w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" onChange={handleChange} value={data.email}/>
               </div>
               <div className="mb-8">
                 <label className="block text-md" htmlFor="email">
                   Your password:
                 </label>
-                <input className="shadow appearance-none border rounded-full border-black/30 w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" />
+                <input className="shadow appearance-none border rounded-full border-black/30 w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="text" onChange={handleChange} value={data.email}/>
               </div>
               <div className='w-full flex justify-center mb-3'>
-                <button type='submit' className="w-full lg:w-9/12 rounded-full bg-[--BackgroundThird-DarkMode] py-2 px-3 text-white transition-colors duration-200">Login</button>
+                <button type='submit' className="w-full lg:w-9/12 rounded-full bg-[--BackgroundThird-DarkMode] py-2 px-3 text-white transition-colors duration-200" onClick={handleSubmit}>Login</button>
               </div>
               <div className="w-full lg:w-9/12 flex justify-center mx-auto">
                 <p className="text-[--TextFourth-DarkMode] text-center">

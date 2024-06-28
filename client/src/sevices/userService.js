@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { useNavigate } from "react-router-dom";
 
 // Funkcja pomocnicza do przygotowania nagłówków
 const prepareHeaders = (headers, { getState }) => {
@@ -24,12 +23,10 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     // lub przekierowanie użytkownika do strony logowania
     
   }
-  const navigate = useNavigate()
 
   return result;
 };
 
-// API slice with user actions
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: baseQueryWithReauth,
