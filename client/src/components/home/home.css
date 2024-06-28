@@ -1,0 +1,139 @@
+/*Obliczanie długości hero dla komputera full hd */
+/* Do zmiany ASAP! */
+/* @media (min-width: 1024px) {
+    .hero {
+        height: calc(93.5vh - 60px) !important;
+    }
+} */
+
+/*Obliczanie długości i szerokości hero dla Quad HD*/
+
+<<<<<<< HEAD
+/* .hero h1 {
+    font-size: var(--h-2);
+=======
+
+.hero h1 {
+>>>>>>> f8a78b363da34c983759cf0e3e5c2f897e2a433a
+    color: var(--Text-DarkMode);
+    font-weight: bold;
+    margin-bottom: var(--s-2);
+    text-align: justify;
+}
+
+.hero p {
+    font-size: var(--p-4);
+    color: var(--TextSecond-DarkMode);
+    margin-bottom: var(--s-2);
+    text-align: justify;
+}
+
+@media (max-width: 768px) {
+    .hero p {
+        font-size: var(--p-2);
+    }
+}
+
+.hero .custom-card-h {
+    color: var(--Primary-DarkMode);
+    font-size: var(--p-5);
+    margin-bottom: 0;
+}
+
+.hero .custom-card-p {
+    color: var(--TextThird-DarkMode);
+    font-size: var(--p-1);
+    margin-bottom: 0;
+}
+
+.hero .custom-flash-svg {
+    color: var(--Primary-DarkMode);
+}
+
+@media (max-width: 768px) {
+    .info h2 {
+        font-size: var(--h-2);
+    }
+} */
+
+.contact {
+    background: var(--Background-DarkMode);
+}
+
+.contact h2 {
+    font-size: var(--h-1);
+    color: var(--Text-DarkMode);
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+}
+
+.contact h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    width: 120px;
+    margin: 0 auto;
+    height: 5px;
+    background-color: var(--Accent-DarkMode);
+}
+
+@media (max-width: 768px) {
+    .contact h2 {
+        font-size: var(--h-2);
+    }
+}
+
+
+.contact-box h3 {
+    font-size: var(--h-1_2);
+    color: var(--Text-DarkMode);
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: var(--s-2);
+}
+
+.contact-box p {
+    font-size: var(--p-4);
+    color: var(--TextSecond-DarkMode);
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .contact h3 {
+        font-size: var(--h-4);
+    }
+
+    .contact-box p {
+        font-size: var(--p-2);
+    }
+}
+
+.contact-box label {
+    color: var(--TextSecond-DarkMode);
+    font-size: var(--p-2);
+}
+
+.contact-box input {
+    background: none;
+    color: var(--TextSecond-DarkMode);
+    outline: none;
+}
+
+.contact-box input::placeholder {
+    font-size: var(--p-1);
+    opacity: 0.5;
+}
+
+.contact-box textarea {
+    background: none;
+    color: var(--TextSecond-DarkMode);
+    outline: none;
+}
+
+.contact-box textarea::placeholder {
+    font-size: var(--p-1);
+    opacity: 0.5;
+}

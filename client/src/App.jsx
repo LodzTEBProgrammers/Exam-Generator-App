@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Footer from "./components/footer/footer";
+import Home from "./components/home/home";
+import Login from './components/login/login'
+import Navbar from "./components/navbar/navbar";
+import { useRef } from "react";
+// Znalazłem konflikt przez który nie da się dać routera w osobnym pliku. Idk dlaczego tak sie dzieje 
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const infoRef = useRef(null);
+  const contactRef = useRef(null);
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Home infoRef={infoRef} contactRef={contactRef}/>,
+    },
+    {
+      path: '/login',
+      element: <Login />,
+    }
+  ]);
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Navbar infoRef={infoRef} contactRef={contactRef} />
+
+        <main className="layout">
+        <RouterProvider router={router}/>
+        </main>
+      <Footer infoRef={infoRef} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
