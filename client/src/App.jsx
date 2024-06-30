@@ -4,6 +4,7 @@ import Home from "./components/home/home";
 import Login from './components/login/login'
 import Navbar from "./components/navbar/navbar";
 import { useRef } from "react";
+import Faq from "./components/faq/faq";
 // Znalazłem konflikt przez który nie da się dać routera w osobnym pliku. Idk dlaczego tak sie dzieje 
 
 
@@ -18,6 +19,10 @@ function App() {
     {
       path: '/login',
       element: <Login />,
+    },
+    {
+      path: "/faq",
+      element:<Faq/>
     }
   ]);
   return (
