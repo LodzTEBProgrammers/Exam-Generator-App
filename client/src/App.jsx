@@ -1,6 +1,7 @@
 import Footer from "./components/footer/footer";
 import Home from "./components/home/home";
 import Navbar from "./components/navbar/navbar";
+
 import { useRef } from "react";
 function App() {
   const infoRef = useRef(null);
