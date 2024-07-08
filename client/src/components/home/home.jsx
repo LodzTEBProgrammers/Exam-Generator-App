@@ -72,7 +72,7 @@ const Home = ({ infoRef, contactRef }) => {
             <h2 className='text-[25px] lg:text-[36px] xl:text-[48px] text-[font-medium text-white'>Send us a message if you had any problems</h2>
             <h5 className='font-normal text-[14px] lg:text-[18px] text-[--TextSecond-DarkMode]'>We are here to solve your problems related to our tool.</h5>
           </div>
-          <div className="border rounded-lg border-white/30 md:w-6/12 lg:w-4/5 xl:w-3/8 mx-auto mt-16">
+          <div className="border rounded-lg border-white/30 w-11/12 md:w-10/12 lg:w-4/5 xl:w-3/8 mx-auto mt-16">
             <form className='p-4'>
               <div className='form-group mb-4'>
                 <label htmlFor="name" className='mb-1 block font-medium text-[--TextSecond-DarkMode]'>Name</label>
