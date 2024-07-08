@@ -16,6 +16,7 @@ function App() {
       <main className="layout">
         <Routes>
           <Route path="/" element={<Home infoRef={infoRef} contactRef={contactRef} />} />
+          <Route path="/home" element={<Home infoRef={infoRef} contactRef={contactRef} />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </main>
