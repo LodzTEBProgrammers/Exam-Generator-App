@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import { securityService } from './security.js';
 import userRouter from './Routes/UserRouter/User_Router.js';
+import cookieParser from 'cookie-parser';
 const app = express();
 app.use(securityService.limiter);
 app.use(cors());
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(helmet())
 app.use(bodyParser.json());
 app.use(examOnlineRouter);
+app.use(cookieParser());
 app.use(userRouter)
 app.use((err, req, res, next) => {
     err.status = err.status || "fail";

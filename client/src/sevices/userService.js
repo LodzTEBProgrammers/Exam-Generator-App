@@ -21,13 +21,11 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
   return result;
 };
 
-export const apiSlice = createApi({
-  reducerPath: "api",
+export const userApi = createApi({
+  reducerPath: "userApi",
   baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({
-    getUser: builder.query({
-      query: (id) => `/user:${id}`,
-    }),
+
     login: builder.mutation({
       query: (data) => ({
         url: "/login",
@@ -45,6 +43,9 @@ export const apiSlice = createApi({
     logout: builder.query({
       query: () => "/logout",
     }),
+    getUser:builder.query({
+      query: () => `/user`,
+    })
   }),
 });
 
@@ -53,4 +54,4 @@ export const {
   useLoginMutation,
   useRegisterMutation,
   useLazyLogoutQuery,
-} = apiSlice;
+} = userApi;

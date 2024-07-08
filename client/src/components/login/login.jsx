@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useLoginMutation } from "../../sevices/userService";
+import { useEffect, useState } from "react";
+import {  useLoginMutation } from "../../sevices/userService";
 
 const Login = () => {
   const [data, setData] = useState({
@@ -7,7 +7,6 @@ const Login = () => {
     password: ""
   });
   const [login,{isLoading}] = useLoginMutation();
-
   const handleSubmit = async (e) => {
     e.preventDefault(); // Dodane, aby zapobiec domyślnemu działaniu przeglądarki
     try {
@@ -17,11 +16,12 @@ const Login = () => {
       alert("Login failed");
     }
   };
-
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
+  useEffect(()=>{
 
+  })
   return (
     <section className='contact relative z-10 flex justify-center items-center h-screen mt-4 mb-11 lg:mt-0'>
       <div className="container w-full max-w-md">

@@ -1,19 +1,23 @@
 import './home.css';
 import HeroImage from '../../assets/imgs/Hero_image.png';
 import Question_card from './utils/Info_card';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import data from './utils/data';
 import Info_card from './utils/minimalistic_card';
 import Icon from './utils/icon';
+import { useGetUserQuery } from '../../sevices/userService';
 
 const Home = ({ infoRef, contactRef }) => {
+  const user = useGetUserQuery();
 
   const [questions, setQuestions] = useState(data.questions);
   const [info, setInfo] = useState(data.info);
-
+  useEffect(()=>{
+    console.log(user)
+  },[user])
   return (
     <>
-      <section className='hero  relative z-10 flex justify-center items-start h-full  mt-4 mb-11 lg:mt-0'>
+      <section className='hero relative z-10 flex justify-center items-start h-full  mt-4 mb-11 lg:mt-0'>
         <div className='container flex flex-col lg:flex-row lg:w-8/12 lg:h-2/3 flex-wrap justify-center mx-auto'>
           <div className='grid grid-flow-col auto-cols-2 px-5  lg:px-0'>
             <div className='flex flex-col justify-center lg:items-start lg:text-left lg:w-4/7 my-10'>

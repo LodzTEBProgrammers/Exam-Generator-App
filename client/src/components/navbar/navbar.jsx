@@ -49,7 +49,7 @@ function Navbar({ infoRef, contactRef }) {
                         </a>
                     </li>
                     <li>
-                        <a className="btn hidden lg:inline-block py-2 px-7 rounded-lg items-center" href="#">
+                        <a className="btn hidden lg:inline-block py-2 px-7 rounded-lg items-center">
                         Panel
                         </a>
                     </li>
