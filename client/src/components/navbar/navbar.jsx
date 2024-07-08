@@ -1,6 +1,7 @@
 import "./navbar.css";
 import { useState } from "react";
 import Traily from "../../assets/imgs/Traily Logo.png";
+import { Link } from "react-router-dom";
 
 function Navbar({ infoRef, contactRef }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -14,9 +15,9 @@ function Navbar({ infoRef, contactRef }) {
     <header className="fixed top-0 lg:top-5 lg:px-5 w-full flex items-center sm:justify-center sm:flex-nowrap z-50">
       <nav className="relative w-[1488px] px-4 py-5 lg:flex lg:items-center lg:rounded-[20px] lg:justify-between backdrop-blur-md border-[.5px] border-white/25">
         <div className="flex items-center justify-between w-full lg:w-auto">
-          <a href="" className="leading-none">
+          <Link to="/" className="leading-none">
             <img src={Traily} alt="Logo Traily" />
-          </a>
+          </Link>
           <div className="lg:hidden">
             <label className="hamburger">
               <input type="checkbox" onClick={toggleMobileMenu} />
@@ -31,79 +32,64 @@ function Navbar({ infoRef, contactRef }) {
         </div>
         <ul className="hidden lg:relative lg:flex lg:ml-auto lg:items-center lg:w-auto lg:space-x-4">
           <li>
-            <a
-              className="nav-link relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left ::hover cursor-pointer "
-              href="#">
+            <a className="nav-link relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left cursor-pointer">
               Home
             </a>
           </li>
           <li>
             <a
-              className="nav-link relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left ::hover cursor-pointer "
+              className="nav-link relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left cursor-pointer"
               onClick={() => handleScroll(infoRef)}>
               How it works
             </a>
           </li>
           <li>
             <a
-              className="nav-link relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left ::hover cursor-pointer "
+              className="nav-link relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left cursor-pointer"
               onClick={() => handleScroll(contactRef)}>
               Contact
             </a>
           </li>
           <li>
-            <a
-              className="nav-link  relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left ::hover cursor-pointer "
-              href="#">
+            <Link className="nav-link relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left cursor-pointer">
               FAQ
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              className="btn hidden lg:inline-block py-2 px-7 rounded-lg items-center"
-              href="#">
+            <Link to="/login" className="btn hidden lg:inline-block py-2 px-7 rounded-lg items-center">
               Panel
-            </a>
+            </Link>
           </li>
         </ul>
-        <ul
-          className={`lg:hidden mobile-menu ${isMobileMenuOpen ? "" : "hidden"}`}>
+        <ul className={`lg:hidden mobile-menu ${isMobileMenuOpen ? "" : "hidden"}`}>
           <li>
-            <a
-              className="nav-link mt-3 mb-3 relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left"
-              href="#">
+            <a href="" className="nav-link mt-3 mb-3 relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left">
               Home
             </a>
           </li>
           <li>
             <a
-              className="nav-link mb-3 relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left"
-              href="#"
+              className="nav-link mb-3 relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
               onClick={() => handleScroll(infoRef)}>
-              How it work?
+              How it works
             </a>
           </li>
           <li>
             <a
-              className="nav-link mb-3 relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left"
-              href="#"
+              className="nav-link mb-3 relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
               onClick={() => handleScroll(contactRef)}>
               Contact
             </a>
           </li>
           <li>
-            <a
-              className="nav-link mb-5  relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left"
-              href="#">
+            <Link className="nav-link mb-5 relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left">
               FAQ
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              className="btn w-full text-center inline-block py-2 px-7 rounded-lg items-center"
-              href="#">
+            <Link to="/login" className="btn w-full text-center inline-block py-2 px-7 rounded-lg items-center">
               Panel
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

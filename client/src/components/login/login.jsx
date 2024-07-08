@@ -1,9 +1,9 @@
 const Login = () => {
   return (
     <section className='contact relative z-10 flex justify-center items-center h-screen mt-4 mb-11 lg:mt-0'>
-        <div className="container w-full max-w-md">
-          <form className="bg-white shadow-md rounded-xl px-8 pt-6 pb-8 mb-4" method="">
-              <h3 className="fw-bold text-center mb-4">Sign In</h3>
+        <div className="container w-full max-w-lg px-8">
+          <form className="bg-white shadow-md rounded-xl px-5 lg:px-8 pt-6 pb-8 mb-4" method="">
+              <h3 className="!text-[32px] !font-bold text-center mb-4">Sign In</h3>
               <div className="mb-2">
                 <label className="block text-md" htmlFor="email">
                   Your email:
