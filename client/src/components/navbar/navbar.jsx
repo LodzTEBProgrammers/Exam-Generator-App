@@ -2,8 +2,9 @@ import "./navbar.css";
 import { useState } from "react";
 import Traily from "../../assets/imgs/Traily Logo.png";
 import { Link } from "react-router-dom";
-
-function Navbar({ infoRef, contactRef }) {
+import { useLocation } from 'react-router-dom';
+function Navbar({ infoRef, contactRef }) { 
+  const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -11,6 +12,10 @@ function Navbar({ infoRef, contactRef }) {
   const handleScroll = (ref) => {
     ref.current.scrollIntoView({ behavior: "smooth", block: "center" });
   };
+
+  if (location.pathname === '/dashboard') {
+    return null; // Jeśli jest na Dashboardzie to nie pokaże się (nie wygeneruje)
+  }
   return (
     <header className="fixed top-0 lg:top-5 lg:px-5 w-full flex items-center sm:justify-center sm:flex-nowrap z-50">
       <nav className="relative w-[1488px] px-4 py-5 lg:flex lg:items-center lg:rounded-[20px] lg:justify-between backdrop-blur-md border-[.5px] border-white/25">

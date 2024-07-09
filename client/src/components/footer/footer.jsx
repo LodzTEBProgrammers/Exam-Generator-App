@@ -1,7 +1,13 @@
 import './footer.css'
 import Traily from "../../assets/imgs/Traily Logo.png";
-
+import { useLocation } from 'react-router-dom';
 function Footer() {
+    const location = useLocation();
+    
+    if (location.pathname === '/dashboard') {
+        return null; // Jeśli jest na Dashboardzie to nie pokaże się (nie wygeneruje)
+    }
+    
     return (
         <footer className="footer relative z-10 flex justify-center items-center">
             <div className="container w-full h-[220px] max-w-screen-xl mx-auto p-4 md:py-8 gap-4">
