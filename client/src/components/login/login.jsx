@@ -19,6 +19,7 @@ const Login = () => {
         setCookie('SessionID', token, { path: '/', secure: true, sameSite: 'None' });
       }
       alert("Login successful");
+      window.location.reload(true);
     } catch (e) {
       alert("Login failed");
     }
