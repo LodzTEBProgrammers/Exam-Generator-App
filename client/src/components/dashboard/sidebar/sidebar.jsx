@@ -15,7 +15,7 @@ const Sidebar = () => {
   return (
     <>
       {isMobileView ? (
-        <aside className="fixed left-0 top-0 w-[164px] pt-3  lg:flex flex-shrink-0 transition-width transition transform ease-in-out duration-1000 z-50 flex h-screen bg-[#0D0D0D] shadow flex-col align-middle justify-between border-r-2 border-[#D1D5DB]/5">
+        <aside className="hidden lg:flex fixed left-0 top-0 w-[164px] pt-3 flex-shrink-0 transition-width transition transform ease-in-out duration-1000 z-50  h-screen bg-[#0D0D0D] shadow flex-col align-middle justify-between border-r-2 border-[#D1D5DB]/5">
           <div className="sidebar-mobile px-8 py-8 flex flex-col justify-between w-full h-[calc(100vh)]">
             <div className="flex items-center mb-auto justify-center">
               <img src={Traily} alt="Hero Obraz" className="h-auto" />
@@ -112,7 +112,7 @@ const Sidebar = () => {
           </div>
         </aside>
       ) : (
-        <aside className="fixed left-0 top-0 w-[237px] pt-3 lg:flex flex-shrink-0 transition-width transition transform ease-in-out duration-1000 z-50 flex h-screen bg-[#0D0D0D] shadow flex-col align-middle justify-between border-r-2 border-[#D1D5DB]/5">
+        <aside className="hidden lg:flex fixed left-0 top-0 w-[237px] pt-3 flex-shrink-0 transition-width transition transform ease-in-out duration-1000 z-50 h-screen bg-[#0D0D0D] shadow flex-col align-middle justify-between border-r-2 border-[#D1D5DB]/5">
           <div className="sidebar px-8 py-8 flex flex-col justify-between w-full h-[calc(100vh)]">
             <div className="flex items-center mb-auto">
               <img src={Traily} alt="Hero Obraz" className="max-w-full h-auto" />
