@@ -144,10 +144,17 @@ function Dashboard() {
                         </div>
                       </div>
                     </div>
+                    <div className="flex justify-end items-end">
+                      <button type="button" className="text-[#FFF] text-[14px] w-full lg:w-auto font-medium bg-[#355AD4] px-4 py-2 rounded-lg mt-6">More Details</button>
+                    </div>
                   </div>
                 </div>
                 <div className="dashboard-actualExams">
-
+                  <div className="bg-[#0FB39D] h-[260px] rounded-3xl px-11 py-8">
+                      <div className="dashboard-actual">
+                        <h2 className="text-[24px] text-[#FFF] font-semibold	">Your actual exams:</h2>
+                      </div>
+                  </div>
                 </div>
               </div>
             </section>
