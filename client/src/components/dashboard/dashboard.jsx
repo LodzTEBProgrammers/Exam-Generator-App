@@ -13,7 +13,7 @@ function Dashboard() {
               {/* Trzy bloki */}
               <div className="grid grid-cols-1 lg:grid-cols-3 mt-12 h-screen gap-16">
                 <div className="dashboard-exams">
-                  <div className="grid grid-cols-1 xl:grid-cols-2 2xl:auto-cols-auto gap-5 flex-wrap h-[244px]">
+                  <div className="grid grid-cols-1 xl:grid-cols-2 2xl:auto-cols-auto gap-5 flex-wrap">
                     <div className="dashboard-exam text-[#D1D5DB] bg-[#2341A1] rounded-xl">
                       <div className="dashboard-total flex p-4">
                         <div className="grid place-items-center items-start mr-2">
@@ -112,7 +112,7 @@ function Dashboard() {
                     </div>
                   </div>
                 </div>
-                <div className="dashboard-calendary w-[332px]">
+                <div className="dashboard-calendary">
                   <div className="dashboard-date flex justify-between">
                     <h2 className="text-[30px] text-[#FFF] font-bold">January</h2>
                     <div className="items-center justify-center flex">
