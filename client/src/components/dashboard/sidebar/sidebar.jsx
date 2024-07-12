@@ -48,7 +48,7 @@ const Sidebar = () => {
             <div className="w-full h-0.5 bg-[#D1D5DB]/10"></div>
             <div className="mt-5 items-center justify-center flex">
               <div className="grid place-items-center items-center">
-                <img src="https://student.studentka.pl/img/wo/2/88/mezczyzna-obrazek_sredni_4025288.jpg" alt="Hero Obraz" className="max-w-full rounded-full h-12"/>
+                <img src="https://student.studentka.pl/img/wo/2/88/mezczyzna-obrazek_sredni_4025288.jpg" alt="Avatar" className="max-w-full rounded-full h-12"/>
               </div>
             </div>
           </div>
@@ -83,7 +83,7 @@ const Sidebar = () => {
             <div className="w-full h-0.5 bg-[#D1D5DB]/10"></div>
             <div className="mt-5 items-center justify-center flex">
               <div className="grid place-items-center items-center mr-4">
-                <img src="https://student.studentka.pl/img/wo/2/88/mezczyzna-obrazek_sredni_4025288.jpg" alt="Hero Obraz" className="max-w-full rounded-full h-12"
+                <img src="https://student.studentka.pl/img/wo/2/88/mezczyzna-obrazek_sredni_4025288.jpg" alt="Avatar" className="max-w-full rounded-full h-12"
                 />
               </div>
               <p className="text-[#FFFFFF] text-[16px]">John Kowalski</p>
