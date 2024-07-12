@@ -12,7 +12,7 @@ function Dashboard() {
                 {/* Górna */}
                 <div className="bg-[#171717] w-full h-[532px] rounded-xl"></div>
                 {/* Trzy bloki */}
-                <div className="grid grid-cols-1 xl:grid-cols-3 mt-12 h-screen gap-16">
+                <div className="grid grid-cols-1 xl:grid-cols-3 mt-12 gap-16">
                   <div className="dashboard-exams">
                     <div className="grid grid-cols-1 xl:grid-cols-2 2xl:auto-cols-auto gap-5 flex-wrap">
                       <div className="dashboard-exam text-[#D1D5DB] bg-[#2341A1] rounded-xl">
