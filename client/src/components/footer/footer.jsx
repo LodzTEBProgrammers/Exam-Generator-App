@@ -1,4 +1,3 @@
-import './footer.css'
 import Traily from "../../assets/imgs/Traily Logo.png";
 import { useLocation } from 'react-router-dom';
 function Footer() {
@@ -9,7 +8,7 @@ function Footer() {
     }
     
     return (
-        <footer className="footer relative z-10 flex justify-center items-center">
+        <footer className="footer relative z-10 flex justify-center items-center bg-[#0d0d0d]">
             <div className="container w-full h-[220px] max-w-screen-xl mx-auto p-4 md:py-8 gap-4">
                 <div className="flex items-center justify-between p-2">
                     <a href="#">
