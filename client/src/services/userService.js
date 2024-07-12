@@ -42,6 +42,7 @@ export const userApi = createApi({
     logout: builder.query({
       query: () => "/logout",
     }),
+    // tylko ta linijka ponizej zostanie
     getUser: builder.query({
       query: () => `/user`,
     })

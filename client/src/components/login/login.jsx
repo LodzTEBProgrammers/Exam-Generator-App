@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useCookies } from 'react-cookie';
-import { useLoginMutation } from "../../sevices/userService";
+import { useLoginMutation } from "../../services/userService";
+import { useDispatch } from "react-redux";
+import { userLogin } from "../../services/auth/authActions";
 
 const Login = () => {
   const [data, setData] = useState({
@@ -9,20 +11,13 @@ const Login = () => {
   });
   const [cookies, setCookie] = useCookies(['SessionID']);
   const [login, { isLoading }] = useLoginMutation();
-
-  const handleSubmit = async (e) => {
+const dispatch = useDispatch()
+  const handleSubmit =  (e) => {
     e.preventDefault();
-    try {
-      const response = await login(data).unwrap();
-      const token = response.data?.token; 
-      if (token) {
-        setCookie('SessionID', token, { path: '/', secure: true, sameSite: 'None' });
-      }
-      alert("Login successful");
-      window.location.reload(true);
-    } catch (e) {
-      alert("Login failed");
-    }
+    
+      dispatch(userLogin(data));
+
+
   };
 
   const handleChange = (e) => {

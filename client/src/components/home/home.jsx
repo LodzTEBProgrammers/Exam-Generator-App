@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import data from './utils/data';
 import Info_card from './utils/minimalistic_card';
 import Icon from './utils/icon';
-import { useGetUserQuery } from '../../sevices/userService';
+import { useGetUserQuery } from '../../services/userService';
 
 const Home = ({ infoRef, contactRef }) => {
   const user = useGetUserQuery();
@@ -14,7 +14,7 @@ const Home = ({ infoRef, contactRef }) => {
   const [info, setInfo] = useState(data.info);
   useEffect(()=>{
     console.log(user)
-  },[user])
+  },[user]) 
   return (
     <>
       <section className='hero relative z-10 flex justify-center items-start h-full  mt-4 mb-11 lg:mt-0'>
