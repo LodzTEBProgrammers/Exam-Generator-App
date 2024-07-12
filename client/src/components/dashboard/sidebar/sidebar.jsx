@@ -15,7 +15,7 @@ const Sidebar = () => {
   return (
     <>
       {isMobileView ? (
-        <aside className="hidden md:flex w-64 pt-3 transition-width transition transform ease-in-out duration-1000 z-50  h-screen bg-[#0D0D0D] shadow flex-col align-middle justify-between border-r-2 border-[#D1D5DB]/5">
+        <aside className="hidden md:flex w-[164px] pt-3 transition-width transition transform ease-in-out duration-1000 z-50  h-screen bg-[#0D0D0D] shadow flex-col align-middle justify-between border-r-2 border-[#D1D5DB]/5">
           <div className="sidebar-mobile px-8 py-8 flex flex-col justify-between w-full h-[calc(100vh)]">
             <div className="flex items-center mb-auto justify-center">
               <img src={Traily} alt="Hero Obraz" className="h-auto" />
