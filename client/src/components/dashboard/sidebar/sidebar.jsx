@@ -4,7 +4,6 @@ import Items from './utils/list';
 import ItemsMobile from './utils/listMobile';
 import SidebarItem from './utils/Sidebar_item';
 import SidebarItemMobile from './utils/Sidebar_itemMobile';
-import "./sidebar.css";
 
 const Sidebar = () => {
   const [isMobileView, setIsMobileView] = useState(false);

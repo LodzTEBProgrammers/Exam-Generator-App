@@ -11,7 +11,6 @@ const dataCalendaryExam = [
         "date": "02’ Thu",
         "title": "Exam from Web Development ",
         "name": "John Doe ",
-        
     }
 
 ];
