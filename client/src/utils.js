@@ -8,10 +8,21 @@ export const getCookie = (name) => {
   export const deleteCookie = (name) => {
     document.cookie = `${name}=; path=/; secure; sameSite=None`;
   }
+  export const setCookie = (name, value, options = {}) => {
+    let cookieString = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`;
   
-  export const setCookie = (name, value) => {
-    let cookieString = `${name}=${value}; secure; sameSite=None;`;
-
+    if (options.path) {
+      cookieString += `; path=${options.path}`;
+    }
+    if (options.expires) {
+      cookieString += `; expires=${options.expires.toUTCString()}`;
+    }
+    if (options.secure) {
+      cookieString += '; secure';
+    }
+    if (options.sameSite) {
+      cookieString += `; samesite=${options.sameSite}`;
+    }
+  
     document.cookie = cookieString;
-  }
-  
+  };

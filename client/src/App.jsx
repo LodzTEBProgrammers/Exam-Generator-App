@@ -5,6 +5,7 @@ import Login from './components/login/login'
 import Navbar from "./components/navbar/navbar";
 import { useRef } from "react";
 import ProfileScreen from './components/temp/ProfileScreen';
+import ProtectedRoute from './ProtectedRoute';
 // Znalazłem konflikt przez który nie da się dać routera w osobnym pliku. Idk dlaczego tak sie dzieje 
 
 
@@ -20,7 +21,9 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
+            <Route element={<ProtectedRoute />}>
             <Route path='/user-profile' element={<ProfileScreen />} />
+          </Route>
           </Routes>
         </main>
         <Footer infoRef={infoRef} />

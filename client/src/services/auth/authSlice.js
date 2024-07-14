@@ -1,21 +1,22 @@
+// authSlice.js
 import { createSlice } from "@reduxjs/toolkit";
-import { userLogin } from "./authActions"; 
-import { getCookie } from "../../utils";
-
-const token = getCookie('SessionID') ? getCookie('SessionID') : null;
+import { userLogin, userLogout } from "./authActions";
 
 const initialState = {
   loading: false,
-  userInfo: {}, // for user object
-  token, // for storing the JWT
+  userInfo: null,
   error: null,
-  success: false, // for monitoring the registration process.
-}
+  success: false,
+};
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    setCredentials: (state, { payload }) => {
+      state.userInfo = payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(userLogin.pending, (state) => {
@@ -25,14 +26,29 @@ const authSlice = createSlice({
       .addCase(userLogin.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.userInfo = payload;
-        state.SessionID = payload.SessionID;
+        state.success = true;
       })
       .addCase(userLogin.rejected, (state, { payload }) => {
         state.loading = false;
-        state.error = payload;
+        state.error = payload || 'An unknown error occurred';
+      })
+      .addCase(userLogout.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(userLogout.fulfilled, (state) => {
+        state.loading = false;
+        state.userInfo = null; // czyść dane użytkownika
+        state.success = false;
+        state.error = null;
+      })
+      .addCase(userLogout.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || 'An unknown error occurred during logout';
       });
-    // register user reducer...
   },
-})
+});
+
+export const { setCredentials } = authSlice.actions;
 
 export default authSlice.reducer;

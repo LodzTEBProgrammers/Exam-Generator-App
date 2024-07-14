@@ -1,29 +1,32 @@
 import { useEffect, useState } from "react";
-import { useCookies } from 'react-cookie';
-import { useLoginMutation } from "../../services/userService";
-import { useDispatch } from "react-redux";
-import { userLogin } from "../../services/auth/authActions";
 
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin } from "../../services/auth/authActions";
+import {useNavigate} from 'react-router-dom'
 const Login = () => {
   const [data, setData] = useState({
     email: "",
     password: ""
   });
-  const [cookies, setCookie] = useCookies(['SessionID']);
-  const [login, { isLoading }] = useLoginMutation();
+  const { loading, userInfo,error } = useSelector((state) => state)
+  const navigate = useNavigate()
 const dispatch = useDispatch()
   const handleSubmit =  (e) => {
     e.preventDefault();
     
       dispatch(userLogin(data));
-
-
+    
   };
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/user-profile')
+    }
+  }, [navigate, userInfo])
 
 
   return (
@@ -61,16 +64,19 @@ const dispatch = useDispatch()
             <button
               type="submit"
               className="w-full lg:w-9/12 rounded-full bg-[--BackgroundThird-DarkMode] py-2 px-3 text-white transition-colors duration-200"
-              disabled={isLoading}
+              disabled={loading}
             >
               Login
             </button>
           </div>
-          {isLoading && (
+          {loading && (
             <div className="text-center">
               Ładowanie...
             </div>
           )}
+          {
+            error && <div className="text-center text-red-500">{error}</div>
+          }
           <div className="w-full lg:w-9/12 flex justify-center mx-auto">
             <p className="text-[--TextFourth-DarkMode] text-center">
               By creating an account you agree to the Terms of use and Privacy Policy.

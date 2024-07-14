@@ -12,8 +12,9 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
   let result = await fetchBaseQuery({
     baseUrl: "http://localhost:5000",
     prepareHeaders,
-    credentials: 'include' 
+    credentials: 'include', // dodaj credentials
   })(args, api, extraOptions);
+
   if (result.error && result.error.status === 401) {
     // Obsługa odświeżania tokenu lub przekierowanie do logowania
   }
@@ -25,33 +26,14 @@ export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({
-    login: builder.mutation({
-      query: (data) => ({
-        url: "/login",
-        method: "POST",
-        body: data,
-      }),
-    }),
-    register: builder.mutation({
-      query: (data) => ({
-        url: "/register",
-        method: "POST",
-        body: data,
-      }),
-    }),
-    logout: builder.query({
-      query: () => "/logout",
-    }),
-    // tylko ta linijka ponizej zostanie
     getUser: builder.query({
       query: () => `/user`,
-    })
+      providesTags: ['User'],
+      pollingInterval: 900000, // 15 minutes
+    }),
   }),
 });
 
 export const {
   useGetUserQuery,
-  useLoginMutation,
-  useRegisterMutation,
-  useLazyLogoutQuery,
 } = userApi;

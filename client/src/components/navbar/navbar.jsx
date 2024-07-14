@@ -1,9 +1,19 @@
 import "./navbar.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Traily from "../../assets/imgs/Traily Logo.png";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useGetUserQuery } from "../../services/userService";
+import { setCredentials } from "../../services/auth/authSlice";
 function Navbar({ infoRef, contactRef }) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const user = useGetUserQuery('user',{
+        pollingInterval: 900000, // 15 minutes
+      });  
+      const dispatch = useDispatch()
+      useEffect(() => {
+        if (user.data) dispatch(setCredentials(user.data.user))
+      }, [user, dispatch])
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };

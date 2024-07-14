@@ -6,15 +6,20 @@ import data from './utils/data';
 import Info_card from './utils/minimalistic_card';
 import Icon from './utils/icon';
 import { useGetUserQuery } from '../../services/userService';
+import { useDispatch } from 'react-redux';
+import { setCredentials } from '../../services/auth/authSlice';
 
 const Home = ({ infoRef, contactRef }) => {
-  const user = useGetUserQuery();
-
+  const user = useGetUserQuery('user',{
+    pollingInterval: 900000, // 15 minutes
+  });  
+  const dispatch = useDispatch()
   const [questions, setQuestions] = useState(data.questions);
   const [info, setInfo] = useState(data.info);
-  useEffect(()=>{
-    console.log(user)
-  },[user]) 
+
+  useEffect(() => {
+    if (user.data) dispatch(setCredentials(user.data.user))
+  }, [user, dispatch])
   return (
     <>
       <section className='hero relative z-10 flex justify-center items-start h-full  mt-4 mb-11 lg:mt-0'>
