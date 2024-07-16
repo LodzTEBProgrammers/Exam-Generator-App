@@ -12,9 +12,9 @@ function Dashboard() {
         <Navbar />
         <Sidebar />
         <div className="flex flex-col flex-1 overflow-y-auto bg-[#0D0D0D] relative pt-4 px-4">
-            <div className="dashboard-content mb-8">
+            <div className="dashboard-content mb-8  ">
                 <div className="bg-[#171717] w-full h-[532px] rounded-xl"></div>
-                <div className="grid grid-cols-1 xl:grid-cols-3 mt-5 gap-8 xl:gap-16 ">
+                <div className="grid grid-cols-1 xl:grid-cols-3 mt-5 gap-8 xl:gap-6">
                   <section className="dashboard-exams xl:flex justify-center items-center">
                     <div className="xl:flex justify-center items-center">
                       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 flex-wrap">
@@ -25,7 +25,7 @@ function Dashboard() {
                     </div>
                   </section>
                   <section className="dashboard-calendary xl:w-80 xl:mx-auto">
-                      <div className="flex justify-between">
+                      <div className="flex justify-between items-center">
                         <p className="text-[#FFFFFF] text-[30px] font-bold">January</p>
                         <div className="items-center justify-center flex">
                           <button type="button" className="text-[#D1D5DB] border-2 border-[#D1D5DB]/15 p-2 rounded-full">

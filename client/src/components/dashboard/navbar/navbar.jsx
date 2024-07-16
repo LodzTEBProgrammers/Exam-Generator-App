@@ -2,7 +2,7 @@ import "../../navbar/navbar.css";
 import { useState } from "react";
 import Traily from "../../../assets/imgs/Traily Logo.png";
 import { Link } from "react-router-dom";
-function Navbar({ infoRef, contactRef }) { 
+function Navbar() { 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
