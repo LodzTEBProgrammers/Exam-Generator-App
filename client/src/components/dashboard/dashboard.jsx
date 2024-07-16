@@ -3,21 +3,25 @@ import Exams  from "./exams/dataExam";
 import Exam from "./exams/Exam";
 import dataCalendaryExam from './exams/dataCalendary';
 import CalendaryExam from './exams/CalendaryExam';
+import Navbar from "./navbar/navbar";
 
 function Dashboard() {
   return (
     <>
       <div className="flex h-screen">
+        <Navbar />
         <Sidebar />
         <div className="flex flex-col flex-1 overflow-y-auto bg-[#0D0D0D] relative pt-4 px-4">
             <div className="dashboard-content mb-8">
                 <div className="bg-[#171717] w-full h-[532px] rounded-xl"></div>
-                <div className="grid grid-cols-1 xl:grid-cols-3 mt-5 gap-8 xl:gap-16">
-                  <section className="dashboard-exams">
-                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 flex-wrap">
-                      {Exams.map((item, index) => (
-                        <Exam key={index} {...item} />
-                      ))}
+                <div className="grid grid-cols-1 xl:grid-cols-3 mt-5 gap-8 xl:gap-16 ">
+                  <section className="dashboard-exams xl:flex justify-center items-center">
+                    <div className="xl:flex justify-center items-center">
+                      <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 flex-wrap">
+                        {Exams.map((item, index) => (
+                          <Exam key={index} {...item} />
+                        ))}
+                      </div>
                     </div>
                   </section>
                   <section className="dashboard-calendary xl:w-80 xl:mx-auto">
