@@ -4,6 +4,7 @@ import Home from "./components/home/home";
 import Dashboard from "./components/dashboard/dashboard";
 import Login from './components/login/login'
 import Navbar from "./components/navbar/navbar";
+import './App.css'
 
 import { useRef } from "react";
 
