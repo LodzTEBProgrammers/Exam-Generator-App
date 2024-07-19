@@ -11,20 +11,34 @@ import { useRef } from "react";
 function App() {
   const infoRef = useRef(null);
   const contactRef = useRef(null);
+
+  function Landing() {
+    return (
+      <>
+        <Navbar infoRef={infoRef} contactRef={contactRef} />
+        <Home infoRef={infoRef} contactRef={contactRef} />
+        <Footer />
+      </>
+    );
+  }
+
+  function LoginPage() {
+    return (
+      <>
+        <Navbar infoRef={infoRef} contactRef={contactRef} />
+        <Login />
+      </>
+    )
+  }
   
   return (
     <>
       <Router>
-        <Navbar infoRef={infoRef} contactRef={contactRef} />
-        <main className="layout">
           <Routes>
-            <Route path="/" element={<Home infoRef={infoRef} contactRef={contactRef} />} />
-            <Route path="/home" element={<Home infoRef={infoRef} contactRef={contactRef} />} />
+            <Route path="/" element={<Landing />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
-        </main>
-        <Footer infoRef={infoRef} />
       </Router>
     </>
   );

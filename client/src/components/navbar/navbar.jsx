@@ -13,9 +13,6 @@ function Navbar({ infoRef, contactRef }) {
     ref.current.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
-  if (location.pathname === '/dashboard') {
-    return null; // Jeśli jest na Dashboardzie to nie pokaże się (nie wygeneruje)
-  }
   return (
     <header className="fixed top-0 lg:top-5 lg:px-5 w-full flex items-center sm:justify-center sm:flex-nowrap z-50">
       <nav className="relative w-[1488px] px-4 py-5 lg:flex lg:items-center lg:rounded-[20px] lg:justify-between backdrop-blur-md border-[.5px] border-white/25">
@@ -37,9 +34,9 @@ function Navbar({ infoRef, contactRef }) {
         </div>
         <ul className="hidden lg:relative lg:flex lg:ml-auto lg:items-center lg:w-auto lg:space-x-4">
           <li>
-            <a className="nav-link relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left cursor-pointer">
+            <Link to="/" className="nav-link relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left cursor-pointer">
               Home
-            </a>
+            </Link>
           </li>
           <li>
             <a
@@ -56,7 +53,7 @@ function Navbar({ infoRef, contactRef }) {
             </a>
           </li>
           <li>
-            <Link className="nav-link relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left cursor-pointer">
+            <Link to="/faq" className="nav-link relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left cursor-pointer">
               FAQ
             </Link>
           </li>
