@@ -120,19 +120,19 @@ export const Verify = async (req, res, next) => {
         message: "Internal Server Error",
       });
     }
-  };
-  // można stworzyć osobne middleware dla każdej z roli albo przepuszczać przez next() odpowiednie komunikaty
-  export const VerifyRole = (req, res, next)=> {
+};
+
+// można stworzyć osobne middleware dla każdej z roli albo przepuszczać przez next() odpowiednie komunikaty
+export const VerifyRole = (req, res, next)=> {
     try {
-        const user = req.user; 
-        const { role } = user; 
+        const user = req.user;
+        const { role } = user;
+        
         // tu sprawdzamy czy  ktoś jest adminem jeżeli tak przepuszczamy dalej
         /*
         nazewnictwo ról:
         admin: 0x88
         user: 0x01 
-
-
         */
         if (role !== "0x88") {
             return res.status(401).json({

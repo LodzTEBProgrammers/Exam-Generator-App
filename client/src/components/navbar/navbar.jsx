@@ -1,16 +1,26 @@
 import "./navbar.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Traily from "../../assets/imgs/Traily Logo.png";
 import { Link } from "react-router-dom";
-import { useLocation } from 'react-router-dom';
-function Navbar({ infoRef, contactRef }) { 
-  const location = useLocation();
+import { useDispatch } from "react-redux";
+import { useGetUserQuery } from "../../services/userService";
+import { setCredentials } from "../../services/auth/authSlice";
+function Navbar({ infoRef, contactRef }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const user = useGetUserQuery('user',{
+    pollingInterval: 900000, // 15 minutes
+  });  
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    if (user.data) dispatch(setCredentials(user.data.user))
+  }, [user, dispatch]);
+  
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+      setIsMobileMenuOpen(!isMobileMenuOpen);
   };
   const handleScroll = (ref) => {
-    ref.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
   };
 
   return (
@@ -84,7 +94,7 @@ function Navbar({ infoRef, contactRef }) {
             </a>
           </li>
           <li>
-            <Link className="nav-link mb-5 relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left">
+            <Link to="/faq" className="nav-link mb-5 relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left">
               FAQ
             </Link>
           </li>

@@ -9,7 +9,8 @@ import { Controllers } from "./Controllers/controllers.js";
 import { Validate, Verify, VerifyRole } from "../../utils/middlewares.js";
 
 const userRouter = express.Router();
-const { Register,Login, Logout } = Controllers;
+const { Register,Login,Logout } = Controllers;
+
 userRouter.post(
   `/register`,
   check("email")
@@ -38,6 +39,7 @@ userRouter.post(
 // userRouter.get("/getToken/", (req, res) => {
 //   res.json({test:crypto.randomBytes(20).toString('hex')})
 // });
+
 userRouter.post(
   "/login",
   check("email")
@@ -48,19 +50,22 @@ userRouter.post(
   Validate,
   Login
 );
+
 userRouter.get("/user", Verify, (req, res) => {
   res.status(200).json({
-      status: "success",
-      message: "Welcome user!",
+    status: "success",
+    message: "Welcome user!",
+    user:req.user
   });
-  
 });
+
 userRouter.get("/admin/user", Verify,VerifyRole, (req, res) => {
   res.status(200).json({
       status: "success",
       message: "Welcome to the your Dashboard!",
   });
-  
 });
+
 userRouter.get('/logout', Logout);
+
 export default userRouter;

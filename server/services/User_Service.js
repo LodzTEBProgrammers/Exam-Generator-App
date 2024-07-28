@@ -59,14 +59,15 @@ class UserService {
 
       const emailRegex = /^[^@\s]+@teb.edu.pl$/;
       const isValid = emailRegex.test(email);
-      
+
       if(!isValid){
         return res.status(400).json({
           status: "failed",
           data: [],
-          message: "Nieprawidłowy email",
+          message: "Invalid email",
         });
       }
+
       const newUser = { first_name, last_name, email, password };
       await this.save(newUser, next);
 
@@ -106,7 +107,7 @@ class UserService {
           message: "Invalid email or password. Please try again with the correct credentials.",
         });
       }
-      
+
       const options = {
         maxAge: 20 * 60 * 1000, 
         httpOnly: true, 
@@ -123,6 +124,7 @@ class UserService {
       next(new AppError(err,404));
     }
   }
+
   async FindOneBlackist(token){
     const [rows] = await pool.query('SELECT * FROM blacklist WHERE token = ?', [token]);
     return rows.length ? rows[0] : null;
@@ -147,32 +149,32 @@ class UserService {
 
       if (!authHeader || !cookieParts || !accessToken) return res.sendStatus(204);
       // TODO 
-      // USUWANIE TOKENA JESLI ISTNIEJE 
+      // USUWANIE TOKENA JESLI ISTNIEJE
+
       const checkIfBlacklisted = await this.FindOneBlackist(accessToken);
-      if (checkIfBlacklisted) return res.sendStatus(204); 
+      if (checkIfBlacklisted) return res.sendStatus(204);
+
       const newBlacklist = {
         token: accessToken,
         date: new Date()
       };
       await this.saveBlacklist(newBlacklist);
-  
+
       res.clearCookie('SessionID', {
         httpOnly: true,
         secure: true,
         sameSite: 'None'
       });
-  
+      
       res.status(200).json({ message: 'You are logged out!' });
     } catch (err) {
-      console.error(err); 
-      res.status(500).json({  
+      console.error(err);
+      res.status(500).json({
         status: 'error',
         message: 'Internal Server Error',
       });
     }
   }
-  
-  
 }
 
 export default new UserService();

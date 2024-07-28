@@ -1,17 +1,19 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Footer from "./components/footer/footer";
 import Home from "./components/home/home";
+import Login from './components/login/login';
 import Dashboard from "./components/dashboard/dashboard";
-import Login from './components/login/login'
 import Navbar from "./components/navbar/navbar";
-import './App.css'
-
 import { useRef } from "react";
+import ProfileScreen from './components/temp/ProfileScreen';
+import ProtectedRoute from './ProtectedRoute';
+import './App.css'
+// Znalazłem konflikt przez który nie da się dać routera w osobnym pliku. Idk dlaczego tak sie dzieje 
 
 function App() {
   const infoRef = useRef(null);
   const contactRef = useRef(null);
-
+  
   function Landing() {
     return (
       <>
@@ -34,11 +36,14 @@ function App() {
   return (
     <>
       <Router>
-          <Routes>
-            <Route path="/" element={<Landing />} />
+        <Routes>
+          <Route path='/' element={<Landing />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/login" element={<LoginPage />} />
-          </Routes>
+            <Route path='/user-profile' element={<ProfileScreen />} />
+          </Route>
+        </Routes>
       </Router>
     </>
   );

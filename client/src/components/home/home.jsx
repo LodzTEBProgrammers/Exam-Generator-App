@@ -1,16 +1,25 @@
 import './home.css';
 import HeroImage from '../../assets/imgs/Hero_image.png';
 import Question_card from './utils/Info_card';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import data from './utils/data';
 import Info_card from './utils/minimalistic_card';
 import Icon from './utils/icon';
+import { useGetUserQuery } from '../../services/userService';
+import { useDispatch } from 'react-redux';
+import { setCredentials } from '../../services/auth/authSlice';
 
 const Home = ({ infoRef, contactRef }) => {
-
+  const user = useGetUserQuery('user',{
+    pollingInterval: 900000, // 15 minutes
+  });  
+  const dispatch = useDispatch()
   const [questions, setQuestions] = useState(data.questions);
   const [info, setInfo] = useState(data.info);
 
+  useEffect(() => {
+    if (user.data) dispatch(setCredentials(user.data.user))
+  }, [user, dispatch])
   return (
     <>
       <section className='hero relative z-10 flex justify-center items-start h-full mt-24 mb-11'>
