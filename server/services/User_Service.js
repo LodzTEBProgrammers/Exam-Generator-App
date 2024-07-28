@@ -114,7 +114,6 @@ class UserService {
         secure: true,
         sameSite: "None",
       };
-      
       const token = this.generateAccessJWT(existingUser.id); 
       res.cookie("SessionID", token, options); 
       res.status(200).json({
@@ -166,7 +165,7 @@ class UserService {
         secure: true,
         sameSite: 'None'
       });
-
+      
       res.status(200).json({ message: 'You are logged out!' });
     } catch (err) {
       console.error(err);
@@ -176,7 +175,6 @@ class UserService {
       });
     }
   }
-
 }
 
 export default new UserService();

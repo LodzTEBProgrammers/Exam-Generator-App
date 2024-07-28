@@ -90,7 +90,6 @@ export const Verify = async (req, res, next) => {
   
       if (!authHeader) return res.sendStatus(401); // if there is no cookie from request header, send an unauthorized response.
       const cookie = authHeader.split("=")[1]; // If there is, split the cookie string to get the actual jwt
-  
       const accessToken = cookie.split(";")[0];
       const checkIfBlacklisted = await service.FindOneBlackist(accessToken); // Check if that token is blacklisted
       if (checkIfBlacklisted)

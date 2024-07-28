@@ -1,13 +1,13 @@
-.header {
+nav {
   background: linear-gradient(to right, #ffffff1a 0%, #f2f2f225 50%, #e5e5e51c 100%);
 }
 
-.header nav .nav-link {
+nav .nav-link {
   color: var(--Text-DarkMode);
   font-size: var(--p-2);
 }
 
-.header nav .btn {
+nav .btn {
   color: var(--Text-DarkMode);
   background: var(--Primary-DarkMode);
   ;
