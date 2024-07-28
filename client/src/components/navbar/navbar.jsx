@@ -1,12 +1,13 @@
 import "./navbar.css";
 import { useEffect, useState } from "react";
 import Traily from "../../assets/imgs/Traily Logo.png";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { useGetUserQuery } from "../../services/userService";
 import { setCredentials } from "../../services/auth/authSlice";
 function Navbar({ infoRef, contactRef }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { userInfo } = useSelector((state) => state.auth);
   const user = useGetUserQuery('user',{
     pollingInterval: 900000, // 15 minutes
   });  
@@ -68,7 +69,7 @@ function Navbar({ infoRef, contactRef }) {
             </Link>
           </li>
           <li>
-            <Link to="/login" className="btn hidden lg:inline-block py-2 px-7 rounded-lg items-center">
+            <Link to={userInfo ? "/dashboard" : "/login"} className="btn hidden lg:inline-block py-2 px-7 rounded-lg items-center">
               Panel
             </Link>
           </li>

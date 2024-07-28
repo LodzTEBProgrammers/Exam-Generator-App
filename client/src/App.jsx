@@ -8,29 +8,40 @@ import { useRef } from "react";
 import ProfileScreen from './components/temp/ProfileScreen';
 import ProtectedRoute from './ProtectedRoute';
 import './App.css'
+import { useSelector } from 'react-redux';
+import Loading from './components/loading/loading';
 // Znalazłem konflikt przez który nie da się dać routera w osobnym pliku. Idk dlaczego tak sie dzieje 
 
 function App() {
   const infoRef = useRef(null);
   const contactRef = useRef(null);
-  
+  const {loading} = useSelector(state=>state.auth)
   function Landing() {
-    return (
+    if(loading){
+      return <Loading/>
+    }else{
+        return (
       <>
         <Navbar infoRef={infoRef} contactRef={contactRef} />
         <Home infoRef={infoRef} contactRef={contactRef} />
         <Footer />
       </>
-    );
+    ); 
+    }
+ 
   }
 
   function LoginPage() {
+    if(loading){
+      return <Loading/>
+    }else{
     return (
       <>
         <Navbar infoRef={infoRef} contactRef={contactRef} />
         <Login />
       </>
     )
+  }
   }
   
   return (

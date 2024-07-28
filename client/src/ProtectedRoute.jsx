@@ -1,9 +1,19 @@
 // ProtectedRoute.js
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Outlet } from 'react-router-dom';
+import { useGetUserQuery } from './services/userService';
+import { setCredentials } from './services/auth/authSlice';
 
 const ProtectedRoute = () => {
+  const user = useGetUserQuery('user',{
+    pollingInterval: 900000, // 15 minutes
+  });  
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    if (user.data) dispatch(setCredentials(user.data.user))
+  }, [user, dispatch]);
   const { userInfo, loading, error } = useSelector((state) => state.auth);
 
   // show unauthorized screen if no user is found in redux store

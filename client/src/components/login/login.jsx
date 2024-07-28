@@ -8,7 +8,7 @@ const Login = () => {
     email: "",
     password: ""
   });
-  const { loading, userInfo,error } = useSelector((state) => state)
+  const { loading, userInfo,error } = useSelector((state) => state.auth)
   const navigate = useNavigate()
 const dispatch = useDispatch()
   const handleSubmit =  (e) => {
@@ -24,7 +24,7 @@ const dispatch = useDispatch()
 
   useEffect(() => {
     if (userInfo) {
-      navigate('/user-profile')
+      navigate('/dashboard')
     }
   }, [navigate, userInfo])
 
@@ -32,7 +32,7 @@ const dispatch = useDispatch()
   return (
     <section className='contact relative z-10 flex justify-center items-center h-screen lg:mt-0'>
         <div className="container w-full max-w-xl px-6">
-          <form className="bg-white shadow-md rounded-xl px-5 lg:px-8 pt-6 pb-8 mb-4" method="">
+          <form className="bg-white shadow-md rounded-xl px-5 lg:px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
               <h3 className="!text-[32px] !font-bold text-center mb-4">Sign In</h3>
               <div className="mb-2">
                 <label className="block text-md" htmlFor="email">
