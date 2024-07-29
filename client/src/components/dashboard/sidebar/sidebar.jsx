@@ -15,22 +15,19 @@ const Sidebar = () => {
     setIsMobileView(!isMobileView);
   };
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(userLogout())
       .unwrap()
       .then(() => {
-        // Opcjonalne: dodatkowe czynności po wylogowaniu, np. przekierowanie do innej strony
         console.log('User logged out successfully');
-        navigate("/")
-        window.location.reload()
-
+        navigate("/");
+        window.location.reload();
       })
       .catch((error) => {
         console.error('Logout error:', error);
       }); 
   };
-
 
   return (
     <>

@@ -1,4 +1,3 @@
-// authSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 import { userLogin, userLogout } from "./authActions";
 
@@ -32,19 +31,11 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = payload || 'An unknown error occurred';
       })
-      .addCase(userLogout.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
       .addCase(userLogout.fulfilled, (state) => {
         state.loading = false;
-        state.userInfo = null; // czyść dane użytkownika
+        state.userInfo = null; // Clear user info upon logout
         state.success = false;
         state.error = null;
-      })
-      .addCase(userLogout.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload || 'An unknown error occurred during logout';
       });
   },
 });

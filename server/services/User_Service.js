@@ -86,44 +86,44 @@ class UserService {
     return rows.length ? rows[0] : null;
   }
 
-  async login(req, res, next) {
-    const { email, password } = req.body;
+    async login(req, res, next) {
+      const { email, password } = req.body;
 
-    try {
-      const existingUser = await this.findOne(email);
-      if (!existingUser) {
-        return res.status(401).json({
-          status: "failed",
-          data: [],
-          message: "Invalid email or password. Please try again with the correct credentials.",
+      try {
+        const existingUser = await this.findOne(email);
+        if (!existingUser) {
+          return res.status(401).json({
+            status: "failed",
+            data: [],
+            message: "Invalid email or password. Please try again with the correct credentials.",
+          });
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, existingUser.password);
+        if (!isPasswordValid) {
+          return res.status(401).json({
+            status: "failed",
+            data: [],
+            message: "Invalid email or password. Please try again with the correct credentials.",
+          });
+        }
+
+        const options = {
+          maxAge: 20 * 60 * 1000, 
+          httpOnly: true, 
+          secure: true,
+          sameSite: "None",
+        };
+        const token = this.generateAccessJWT(existingUser.id); 
+        res.cookie("SessionID", token, options); 
+        res.status(200).json({
+          status: "success",
+          message: "You have successfully logged in.",
         });
+      } catch (err) {
+        next(new AppError(err,404));
       }
-
-      const isPasswordValid = await bcrypt.compare(password, existingUser.password);
-      if (!isPasswordValid) {
-        return res.status(401).json({
-          status: "failed",
-          data: [],
-          message: "Invalid email or password. Please try again with the correct credentials.",
-        });
-      }
-
-      const options = {
-        maxAge: 20 * 60 * 1000, 
-        httpOnly: true, 
-        secure: true,
-        sameSite: "None",
-      };
-      const token = this.generateAccessJWT(existingUser.id); 
-      res.cookie("SessionID", token, options); 
-      res.status(200).json({
-        status: "success",
-        message: "You have successfully logged in.",
-      });
-    } catch (err) {
-      next(new AppError(err,404));
     }
-  }
 
   async FindOneBlackist(token){
     const [rows] = await pool.query('SELECT * FROM blacklist WHERE token = ?', [token]);
@@ -143,38 +143,42 @@ class UserService {
   }
   async logout(req, res) {
     try {
-      const authHeader = req.headers['cookie']; 
-      const cookieParts = authHeader.split(';').find(c => c.trim().startsWith('SessionID='));
-      const accessToken = cookieParts.split('=')[1];
+        const authHeader = req.headers['cookie']; 
+        if (!authHeader) return res.sendStatus(204);
 
-      if (!authHeader || !cookieParts || !accessToken) return res.sendStatus(204);
-      // TODO 
-      // USUWANIE TOKENA JESLI ISTNIEJE
+        const cookieParts = authHeader.split(';').find(c => c.trim().startsWith('SessionID='));
+        if (!cookieParts) return res.sendStatus(204);
 
-      const checkIfBlacklisted = await this.FindOneBlackist(accessToken);
-      if (checkIfBlacklisted) return res.sendStatus(204);
+        const accessToken = cookieParts.split('=')[1];
+        if (!accessToken) return res.sendStatus(204);
 
-      const newBlacklist = {
-        token: accessToken,
-        date: new Date()
-      };
-      await this.saveBlacklist(newBlacklist);
+        // TODO 
+        // USUWANIE TOKENA JESLI ISTNIEJE
 
-      res.clearCookie('SessionID', {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'None'
-      });
-      
-      res.status(200).json({ message: 'You are logged out!' });
+        const checkIfBlacklisted = await this.FindOneBlackist(accessToken);
+        if (checkIfBlacklisted) return res.sendStatus(204);
+
+        const newBlacklist = {
+            token: accessToken,
+            date: new Date()
+        };
+        await this.saveBlacklist(newBlacklist);
+
+        res.clearCookie('SessionID', {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None'
+        });
+
+        res.status(200).json({ message: 'You are logged out!' });
     } catch (err) {
-      console.error(err);
-      res.status(500).json({
-        status: 'error',
-        message: 'Internal Server Error',
-      });
+        console.error(err);
+        res.status(500).json({
+            status: 'error',
+            message: 'Internal Server Error',
+        });
     }
-  }
+}
 }
 
 export default new UserService();

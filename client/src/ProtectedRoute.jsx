@@ -1,21 +1,35 @@
 // ProtectedRoute.js
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useGetUserQuery } from './services/userService';
 import { setCredentials } from './services/auth/authSlice';
+import Loading from './components/loading/loading';
 
 const ProtectedRoute = () => {
   const user = useGetUserQuery('user',{
     pollingInterval: 900000, // 15 minutes
   });  
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   
   useEffect(() => {
-    if (user.data) dispatch(setCredentials(user.data.user))
+    if (user.data) {
+      dispatch(setCredentials(user.data.user))
+        }
   }, [user, dispatch]);
-  const { userInfo, loading, error } = useSelector((state) => state.auth);
+  
+  const { userInfo, loading } = useSelector((state) => state.auth);
 
+  useEffect(() => {
+    if (!loading && !userInfo) {
+      navigate('/login');
+    }
+  }, [loading, userInfo, navigate]);
+
+  if (loading) {
+    return <Loading/>;
+  }
   // show unauthorized screen if no user is found in redux store
   if (!userInfo) {
     return (
