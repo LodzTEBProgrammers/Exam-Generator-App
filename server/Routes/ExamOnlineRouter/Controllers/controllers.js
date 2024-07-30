@@ -3,15 +3,12 @@ import { validationResult } from 'express-validator';
 
 const getExams = async (req, res) => {
     try {
-      const service = Core.getService("ExamO_Service");
-      const exams = await service.getAllExams();
+        const service = Core.getService("ExamO_Service");
+        const exams = await service.getAllExams();
 
-      if(req.headers.cookie.hello){
-        console.log("cookie exists")
-      }
-      res.status(200).json({ data: exams });
+        res.status(200).json({ data: exams });
     } catch (err) {
-      res.status(500).json({ error: "Failed to fetch exams" });
+        res.status(500).json({ error: "Failed to fetch exams" });
     }
 };
 
@@ -76,7 +73,6 @@ const patchExamById = async (req, res) => {
 
     try {
         const service = Core.getService("ExamO_Service");
-
         await service.updateExam(id, body);
         res.status(200).send(body);
     } catch (err) {
@@ -88,11 +84,52 @@ const deleteExamById = async (req, res) => {
     const { id } = req.params;
     try {
         const service = Core.getService("ExamO_Service");
-        
         await service.deleteExam(id);
         res.status(200).send("Exam was successfully deleted");
     } catch (err) {
         res.status(500).send({ error: "Failed to delete exam" });
+    }
+};
+
+const addTaskToExam = async (req, res) => {
+    const { id } = req.params;
+    const { taskId } = req.body;
+
+    try {
+        const service = Core.getService("ExamO_Service");
+        await service.addTaskToExam(id, taskId);
+        res.status(200).send({ message: "Task added to exam" });
+    } catch (err) {
+        res.status(500).send({ error: "Failed to add task to exam" });
+    }
+};
+
+const updateExamStatus = async (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    try {
+        const service = Core.getService("ExamO_Service");
+        await service.updateExamStatus(id, status);
+        res.status(200).send({ message: "Exam status updated" });
+    } catch (err) {
+        res.status(500).send({ error: "Failed to update exam status" });
+    }
+};
+
+const getExamsByStatus = async (req, res) => {
+    const { status } = req.params;
+
+    try {
+        const service = Core.getService("ExamO_Service");
+        const exams = await service.getExamsByStatus(status);
+
+        if (!exams.length) {
+            return res.status(404).json({ error: "No exams found for the specified status" });
+        }
+        res.status(200).json({ data: exams });
+    } catch (err) {
+        res.status(500).json({ error: "Failed to fetch exams" });
     }
 };
 
@@ -102,5 +139,8 @@ export const Controllers = {
     getExamByUser,
     patchExamById,
     deleteExamById,
-    createExam
+    createExam,
+    addTaskToExam,
+    updateExamStatus,
+    getExamsByStatus
 };
