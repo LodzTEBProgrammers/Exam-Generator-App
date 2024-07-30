@@ -9,6 +9,7 @@ import ProtectedRoute from './ProtectedRoute';
 import './App.css';
 import { useSelector } from 'react-redux';
 import Loading from './components/loading/loading';
+import QuestionLibrary from './components/dashboard/exams/QuestionLibrary/QuestionLibrary';
 
 function App() {
   const infoRef = useRef(null);
@@ -50,7 +51,9 @@ function App() {
           <Route path='/' element={<Landing />} />
           <Route path='/login' element={<LoginPage />} />
           <Route element={<ProtectedRoute />}>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />}>
+             <Route path='questionLibary' element={<QuestionLibrary/>} />
+            </Route>
           </Route>
         </Routes>
     </Router>

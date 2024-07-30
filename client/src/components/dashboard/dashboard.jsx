@@ -4,6 +4,7 @@ import Exam from "./exams/Exam";
 import dataCalendaryExam from './exams/dataCalendary';
 import CalendaryExam from './exams/CalendaryExam';
 import Navbar from "./navbar/navbar";
+import { Outlet } from "react-router-dom";
 
 function Dashboard() {
   return (
@@ -12,7 +13,9 @@ function Dashboard() {
         <Navbar />
         <Sidebar />
         <div className="w-full flex flex-col gap-4 bg-[#0D0D0D] relative p-4">
-          <div className="bg-[#171717] w-full h-[532px] rounded-xl"></div>
+          <div className="bg-[#171717] w-full h-[532px] rounded-xl">
+            <Outlet/>
+          </div>
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
             <section className="dashboard-exams xl:flex justify-center items-center">
               <div className="xl:flex justify-center items-center">
