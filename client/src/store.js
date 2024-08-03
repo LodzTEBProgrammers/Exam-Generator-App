@@ -5,7 +5,9 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 
 import authReducer from './services/auth/authSlice';
+import examReducer from './services/exam/examSlice';
 import { userApi } from "./services/userService";
+import { examApi } from "./services/examService";
 
 // Persist configuration
 const persistConfig = {
@@ -16,6 +18,8 @@ const persistConfig = {
 // Root reducer configuration
 const rootReducer = combineReducers({
   [userApi.reducerPath]: userApi.reducer,
+  [examApi.reducerPath]: examApi.reducer, // Corrected to use examApi.reducer
+  exam: examReducer,
   auth: authReducer,
 });
 
@@ -30,7 +34,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE']
       }
-    }).concat(userApi.middleware)
+    }).concat(userApi.middleware, examApi.middleware), // Added examApi.middleware
 });
 
 // Persistor configuration

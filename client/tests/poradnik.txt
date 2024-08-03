@@ -1,0 +1,14 @@
+Aby stworzyć test jednostkowy musicie na początku stworzyć w folderze tests nowy plik o nazwie "wasza_nazwa.test.js" np sum.test.js
+W pliku tym możecie stworzyć testy dla swoich funkcji. 
+Aby stworzyć test należy zastosować się do podanego schematu:
+
+test("nazwa przeprowadzanego testu",()=>{
+// logika sprawdzania
+// np. exepct(suma(5,2)).toBe(7)
+
+})
+
+exepct(suma(2,4)).toBe(6) - przyjmuje funkcje wykonawcza np suma i odpowiednie argumenty przykładowo 2,4. Rezultatem zwrotnym tej funkcji będzie 6
+Za to toBe(6) odwołuje się do tego co funkcja powinna zwrócić czyli w tym wypadku 6. Jeżeli wartość zwrotna zgadza się test zostaje uznany za zaliczony :>
+W przypadku kiedy jest negatywny robicie screena i wysyłacie na kanale #testy-jednostkowe a ktoś zajmie się naprawą tego błędu. Oczywiście możecie dawać różne funkcje, argumenty
+po prostu to co uważacie że warto sprawdzić

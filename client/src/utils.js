@@ -1,3 +1,5 @@
+import { fetchBaseQuery } from "@reduxjs/toolkit/query";
+
 export const getCookie = (name) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
@@ -26,3 +28,26 @@ export const getCookie = (name) => {
   
     document.cookie = cookieString;
   };
+  export const prepareHeaders = (headers, { getState }) => {
+    const token = getState().auth?.token;
+    if (token) {
+      headers.set('Authorization', `${token}`);
+    }
+    return headers;
+  };
+  
+  export const baseQueryWithReauth = async (args, api, extraOptions) => {
+    let result = await fetchBaseQuery({
+      baseUrl: "http://localhost:5000",
+      prepareHeaders,
+      credentials: 'include', // dodaj credentials
+    })(args, api, extraOptions);
+  
+    if (result.error && result.error.status === 401) {
+      // Obsługa odświeżania tokenu lub przekierowanie do logowania
+    }
+  
+    return result;
+  };
+  export const traily = "dashboard/exams/online";
+  

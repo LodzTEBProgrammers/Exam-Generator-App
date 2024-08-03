@@ -1,18 +1,18 @@
-import routes from '../constants/http-routes'
-import axios from 'axios';
-// do napisania serwis z akcjami API na egzaminach
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { baseQueryWithReauth } from "../utils";
+import { traily } from "../utils";
+export const examApi = createApi({
+  reducerPath: "examApi",
+  baseQuery: baseQueryWithReauth,
+  endpoints: (builder) => ({
+    getTasks: builder.query({
+      query: () => `/${traily}/tasks`,
+      providesTags: ['Task'],
+      pollingInterval: 900000, 
+    }),
+  }),
+});
 
-
-// Jeżeli bedziemy chcieć użyjemy redux tooklita do napisania serwisów
-
-const getExams = async (type) => {
-
-    const res = await axios.get(routes.server + routes.routes.examsOnline.getExams.get + type)  
-    return res;
-}
-
-
-
-export const examService ={
-    getExams
-}
+export const {
+  useGetTasksQuery,
+} = examApi;

@@ -1,26 +1,5 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-const prepareHeaders = (headers, { getState }) => {
-  const token = getState().auth?.token;
-  if (token) {
-    headers.set('Authorization', `${token}`);
-  }
-  return headers;
-};
-
-const baseQueryWithReauth = async (args, api, extraOptions) => {
-  let result = await fetchBaseQuery({
-    baseUrl: "http://localhost:5000",
-    prepareHeaders,
-    credentials: 'include', // dodaj credentials
-  })(args, api, extraOptions);
-
-  if (result.error && result.error.status === 401) {
-    // Obsługa odświeżania tokenu lub przekierowanie do logowania
-  }
-
-  return result;
-};
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { baseQueryWithReauth } from "../utils";
 
 export const userApi = createApi({
   reducerPath: "userApi",

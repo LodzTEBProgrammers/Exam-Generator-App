@@ -5,9 +5,20 @@ import dataCalendaryExam from './exams/dataCalendary';
 import CalendaryExam from './exams/CalendaryExam';
 import Navbar from "./navbar/navbar";
 import { Outlet } from "react-router-dom";
+import { useGetTasksQuery } from "../../services/examService";
+import { useEffect } from "react";
+import { setCredentials } from "../../services/exam/examSlice";
+import { useDispatch } from "react-redux";
 
 function Dashboard() {
-  return (
+  const dispatch = useDispatch()
+  const tasks = useGetTasksQuery('tasks',{
+    pollingInterval: 900000, // 15 minutes
+  });
+  useEffect(() => {
+    if (tasks.data) dispatch(setCredentials(tasks.data))
+  }, [tasks, dispatch])
+     return (
     <>
       <div className="flex h-screen">
         <Navbar />

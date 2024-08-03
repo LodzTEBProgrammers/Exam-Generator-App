@@ -6,15 +6,23 @@ class ExamO_Service {
   }
 
   async getAllTasks() {
-      try {
-          const [rows] = await pool.query("SELECT * FROM tasks");
-          return rows;
-      } catch (error) {
-          console.error("Error fetching tasks:", error);
-          throw error;
-      }
+    try {
+        const [rows] = await pool.query("SELECT * FROM tasks");
+        console.log("Fetched tasks:", rows); // Add this line for debugging
+        return rows;
+    } catch (error) {
+        console.error("Error fetching tasks:", error);
+        throw error;
+    }
+}
+  async getTask(taskId){
+    try {
+        const [rows] = await pool.query("SELECT * FROM tasks");
+        return rows;
+    }catch(error){
+        console.error("Error fetching task:", error);
+    }
   }
-
   async test() {
       return "test";
   }
@@ -158,7 +166,8 @@ class ExamO_Service {
           throw error;
       }
   }
-
+ 
+ 
   async addTaskToExam(examId, taskId) {
       try {
           await pool.query("INSERT INTO exam_tasks (exam_id, task_id) VALUES (?, ?)", [examId, taskId]);
