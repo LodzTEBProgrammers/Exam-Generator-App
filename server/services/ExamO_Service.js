@@ -17,7 +17,7 @@ class ExamO_Service {
 }
   async getTask(taskId){
     try {
-        const [rows] = await pool.query("SELECT * FROM tasks");
+        const [rows] = await pool.query("SELECT * FROM tasks WHERE id = ?",[taskId]);
         return rows;
     }catch(error){
         console.error("Error fetching task:", error);

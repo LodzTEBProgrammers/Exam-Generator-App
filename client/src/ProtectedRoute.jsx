@@ -21,12 +21,7 @@ const ProtectedRoute = () => {
   
   const { userInfo, loading } = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    if (!loading && !userInfo) {
-      navigate('/login');
-    }
-  }, [loading, userInfo, navigate]);
-
+ 
   if (loading) {
     return <Loading/>;
   }

@@ -6,9 +6,8 @@ export const examApi = createApi({
   baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({
     getTasks: builder.query({
-      query: () => `/${traily}/tasks`,
+      query: () => `/dashboard/exams/online/v1/tasks`,
       providesTags: ['Task'],
-      pollingInterval: 900000, 
     }),
   }),
 });

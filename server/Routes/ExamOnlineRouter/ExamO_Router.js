@@ -5,7 +5,7 @@ import { patchExamByIdMiddle, resolveByExamId, deleteExamByIdMiddle, Verify } fr
 import { Controllers } from './Controllers/controllers.js';
 import data from '../constants.js';
 
-const { getExams, getExamById, getExamByUser, patchExamById, deleteExamById, createExam, addTaskToExam, updateExamStatus, getExamsByStatus,getTask,getAllTasks } = Controllers;
+const { getExams, getExamById, getExamByUser, patchExamById, deleteExamById, createExam, addTaskToExam, updateExamStatus, getExamsByStatus,getTask,getTasks } = Controllers;
 const examOnlineRouter = express.Router();
 
 examOnlineRouter.get(`/${data.traily}`, Verify, getExams);
@@ -17,6 +17,6 @@ examOnlineRouter.delete(`/${data.traily}/delete/:id`, Verify, deleteExamByIdMidd
 examOnlineRouter.post(`/${data.traily}/tasks/:id`, Verify, addTaskToExam);
 examOnlineRouter.patch(`/${data.traily}/:id/status`, Verify,updateExamStatus);
 examOnlineRouter.get(`/${data.traily}/status/:status`, Verify, getExamsByStatus);
-examOnlineRouter.get(`/${data.traily}/tasks/:id`,Verify,getTask)
-examOnlineRouter.get(`/${data.traily}/tasks`, getAllTasks); // Temporarily remove Verify
+examOnlineRouter.get(`/${data.traily}/v1/tasks/:id`, getTask)
+examOnlineRouter.get(`/${data.traily}/v1/tasks`, getTasks); 
 export default examOnlineRouter;

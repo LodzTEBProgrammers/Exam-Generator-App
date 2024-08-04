@@ -90,14 +90,12 @@ const deleteExamById = async (req, res) => {
         res.status(500).send({ error: "Failed to delete exam" });
     }
 };
-const getAllTasks = async (req, res) => {
+const getTasks = async (req, res) => {
     try {
         const service = Core.getService("ExamO_Service");
         const tasks = await service.getAllTasks();
-        console.log("Tasks fetched successfully:", tasks); // Add this line
         res.status(200).json({ data: tasks });
     } catch (err) {
-        console.error("Error in getTasks controller:", err); // Modify this line
         res.status(500).send("Failed to find task");
     }
 };
@@ -107,7 +105,7 @@ const getTask = async (req,res)=>{
         const {id} = req.params;
         const service = Core.getService("ExamO_Service");
         const task = await service.getTask(id);
-        res.status(200).json({data:task});
+        res.status(200).json({ data: task });
     }catch(err){
         res.status(500).send("Failed to find task")
     }
@@ -159,7 +157,7 @@ export const Controllers = {
     getExamById,
     getExamByUser,
     getTask,
-    getAllTasks,
+    getTasks,
     patchExamById,
     deleteExamById,
     createExam,

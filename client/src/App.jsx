@@ -4,7 +4,7 @@ import Home from "./components/home/home";
 import Login from './components/login/login';
 import Dashboard from "./components/dashboard/dashboard";
 import Navbar from "./components/navbar/navbar";
-import { Suspense, useRef } from "react";
+import { useRef } from "react";
 import ProtectedRoute from './ProtectedRoute';
 import './App.css';
 import { useSelector } from 'react-redux';
