@@ -10,6 +10,7 @@ import './App.css';
 import { useSelector } from 'react-redux';
 import Loading from './components/loading/loading';
 import QuestionLibrary from './components/dashboard/exams/QuestionLibrary/QuestionLibrary';
+import Panel from './components/dashboard/panel/panel';
 
 function App() {
   const infoRef = useRef(null);
@@ -49,10 +50,11 @@ function App() {
     <Router>
         <Routes>
           <Route path='/' element={<Landing />} />
-          <Route path='/login' element={<LoginPage />} />
+          <Route path='login' element={<LoginPage />} />
           <Route element={<ProtectedRoute />}>
-            <Route path="/dashboard" element={<Dashboard />}>
-             <Route path='questionLibary' element={<QuestionLibrary/>} />
+            <Route path='dashboard' element={<Dashboard />}>
+              <Route index element={<Panel />} />
+              <Route path='questionLibary' element={<QuestionLibrary/>} />
             </Route>
           </Route>
         </Routes>
