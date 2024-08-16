@@ -34,7 +34,8 @@ function App() {
 
   function FaqPage(){
     return (
-      <>
+      <>            
+          <Navbar infoRef={infoRef} contactRef={contactRef} />
           <Faq />
           <Footer />
       </>
