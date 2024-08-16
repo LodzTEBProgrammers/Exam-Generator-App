@@ -1,7 +1,7 @@
 const Faq = () => {
   return (
     <>
-    <main className="text-[#FFFFFF] h-full justify-center items-center flex bg-[#0D0D0D]">
+    <main className="text-[#FFFFFF] justify-center items-center flex bg-[#0D0D0D]">
         <div className="p-4 grid grid-cols-1 gap-8 container max-w-7xl mx-auto md:py-8 mt-24">
             <section>
                 <ul className="flex items-center whitespace-nowrap font-bold text-pretty leading-relaxed text-[14px] sm:text-[18px]">

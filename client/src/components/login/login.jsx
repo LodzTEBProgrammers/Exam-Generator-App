@@ -30,6 +30,7 @@ const dispatch = useDispatch()
 
 
   return (
+    <main>
     <section className='contact relative z-10 flex justify-center items-center h-screen lg:mt-0'>
         <div className="container w-full max-w-xl px-6">
           <form className="bg-white shadow-md rounded-xl px-5 lg:px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
@@ -99,6 +100,7 @@ const dispatch = useDispatch()
           </form>
         </div>
     </section>
+    </main>
   );
 };
 
