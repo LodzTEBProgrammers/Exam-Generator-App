@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 import Loading from './components/loading/loading';
 import QuestionLibrary from './components/dashboard/exams/QuestionLibrary/QuestionLibrary';
 import Panel from './components/dashboard/panel/panel';
-
+import ExamLibrary from './components/dashboard/exams/ExamsLibrary/ExamLibrary';
 function App() {
   const infoRef = useRef(null);
   const contactRef = useRef(null);
@@ -65,6 +65,7 @@ function App() {
             <Route path='dashboard' element={<Dashboard />}>
               <Route index element={<Panel />} />
               <Route path='questionLibary' element={<QuestionLibrary/>} />
+              <Route path='examlist' element={<ExamLibrary/>} />
             </Route>
           </Route>
         </Routes>

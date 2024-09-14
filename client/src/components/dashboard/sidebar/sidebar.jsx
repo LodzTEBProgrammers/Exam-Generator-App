@@ -7,7 +7,6 @@ import SidebarItemMobile from './utils/Sidebar_itemMobile';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { userLogout } from '../../../services/auth/authActions';
-import { useGetTasksQuery } from '../../../services/examService';
 import { useGetUserQuery } from '../../../services/userService';
 
 const Sidebar = () => {
@@ -31,7 +30,7 @@ const Sidebar = () => {
       }); 
   };
   const tasks = useGetUserQuery();
-
+  
   return (
     <>
       {isMobileView ? (
