@@ -1,4 +1,5 @@
 import React from 'react'
+import ExamList from './ExamList'
 
 const ExamLibrary = () => {
   return (
@@ -12,7 +13,7 @@ const ExamLibrary = () => {
     {/* SEKCJA NAWIGACJI*/}
     <hr className="border-[#F1F5F9]/10"></hr>
         {/* LISTA EGZAMINOW*/}
-
+        <ExamList/>
         
     
   </div>  )
