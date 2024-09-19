@@ -1,7 +1,19 @@
-import React from 'react'
+import { useEffect } from 'react'
 import Exam from './Exam'
+import { useDispatch, useSelector } from 'react-redux';
+import { useGetExamsQuery } from '../../../../services/examService';
+import { setCredentials } from '../../../../services/exam/examSlice';
 
 const ExamList = () => {
+    const exams = useGetExamsQuery();
+    const dispatch = useDispatch();
+  
+    useEffect(() => {
+      if (exams.data) dispatch(setCredentials(exams.data.data))
+    }, [exams, dispatch])
+  
+    const { exams:Exams } = useSelector((state) => state.exam);
+  
   return (
     <div className='text-[--TextSecond-DarkMode]'>
         <div className='flex font-bold text-xl items-center p-4 m-4'>
@@ -32,7 +44,11 @@ const ExamList = () => {
             </div>
         </div>
         <div>
-            <Exam/>
+        {
+        Exams.map(e=>(
+            <Exam key={e.id} title={e.name}  description={e.description}/>
+        ))
+      }
         </div>
     </div>
   )

@@ -1,12 +1,12 @@
 import React from 'react';
 
-const ExamList = () => {
+const ExamList = ({title,description}) => {
   return (
     <div className="flex flex-col text-[--Text-DarkMode] bg-[--BackgroundThird-DarkMode] p-4 m-6 rounded-xl">
       <div className="flex flex-row w-full justify-between items-center">
         <div className="flex flex-col">
-          <span className="font-bold text-2xl">Title</span>
-          <span className='text-[--TextSecond-DarkMode]'>Description</span>
+          <span className="font-bold text-2xl">{title}</span>
+          <span className='text-[--TextSecond-DarkMode]'>{description}</span>
         </div>
         <div className="flex space-x-4">
           <div className='flex space-x-3 border-2 rounded-lg py-2 px-3 cursor-pointer tracking-wider border-[#F1F5F9]/15'>

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   loading: false,
   tasks: null,
+  exams:null,
   error: null,
   success: false,
 };
@@ -13,6 +14,7 @@ const examSlice = createSlice({
   reducers: {
     setCredentials: (state, { payload }) => {
       state.tasks = payload;
+      state.exams = payload
     }
   }
 });
