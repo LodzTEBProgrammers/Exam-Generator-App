@@ -1,5 +1,6 @@
 import React from 'react'
 import ExamList from './ExamList'
+import ExamPagination from './ExamPagination'
 
 const ExamLibrary = () => {
   return (
@@ -14,8 +15,7 @@ const ExamLibrary = () => {
     <hr className="border-[#F1F5F9]/10"></hr>
         {/* LISTA EGZAMINOW*/}
         <ExamList/>
-        
-    
+        <ExamPagination/>
   </div>  )
 }
 
