@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from "./components/footer/footer";
 import Home from "./components/home/home";
 import Login from './components/login/login';
+import Faq from './components/faq/faq';
 import Dashboard from "./components/dashboard/dashboard";
 import Navbar from "./components/navbar/navbar";
 import { useRef } from "react";
@@ -18,7 +19,6 @@ function App() {
   const { loading } = useSelector(state => state.auth);
 
   // Wrapper for Suspense fallback
-  
   function Landing() {
     if(loading){
       return <Loading/>
@@ -30,7 +30,16 @@ function App() {
           <Footer />
         </>
       );
-    
+  }
+
+  function FaqPage(){
+    return (
+      <>            
+          <Navbar infoRef={infoRef} contactRef={contactRef} />
+          <Faq />
+          <Footer />
+      </>
+    )
   }
 
   function LoginPage() {
@@ -50,6 +59,7 @@ function App() {
     <Router>
         <Routes>
           <Route path='/' element={<Landing />} />
+          <Route path='faq' element={<FaqPage />} />
           <Route path='login' element={<LoginPage />} />
           <Route element={<ProtectedRoute />}>
             <Route path='dashboard' element={<Dashboard />}>

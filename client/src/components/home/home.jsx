@@ -22,7 +22,8 @@ const Home = ({ infoRef, contactRef }) => {
   }, [user, dispatch])
   return (
     <>
-      <section className='hero relative z-10 flex justify-center items-start h-full mt-24 mb-11'>
+    <main>
+    <section className='hero relative z-10 flex justify-center items-start h-full mt-24 mb-11'>
         <div className='container flex flex-col lg:w-8/12 justify-center mx-auto'>
           <div className='grid grid-flow-col auto-cols-2 px-5 lg:px-0'>
             <div className='flex flex-col justify-center lg:items-start lg:text-left lg:w-4/7 my-10'>
@@ -102,6 +103,7 @@ const Home = ({ infoRef, contactRef }) => {
           </div>
         </div>
       </section>
+    </main>
     </>
   );
 };

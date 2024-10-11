@@ -44,11 +44,6 @@
   padding: 0;
 }
 
-body {
-  background: var(--Primary-DarkMode);
-  background: linear-gradient(90deg, var(--Primary-DarkMode) 13%, var(--Accent-DarkMode) 120%);
-}
-
 a {
   text-decoration: none;
 }
